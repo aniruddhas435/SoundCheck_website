@@ -17,16 +17,16 @@ export class SoundCheckApp extends Component {
         }
     };
 
-    handleDragg = event => {
-        if(!this.state.isHandlerDragging) {
-            return false;
-        }
+    // handleDragg = event => {
+    //     if(!this.state.isHandlerDragging) {
+    //         return false;
+    //     }
 
-        let containerOffsetLeft = event.target.offsetLeft;
-        let pointerRelativeXpos = event.clientX - containerOffsetLeft;
+    //     let containerOffsetLeft = event.target.offsetLeft;
+    //     let pointerRelativeXpos = event.clientX - containerOffsetLeft;
 
         
-    };
+    // };
 
     handleSave = event => {
 
