@@ -1,0 +1,201 @@
+.editor-console-container {
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.editor-console-container::-webkit-scrollbar {
+    display: none;
+}
+
+.code-editor-container {
+    height: fit-content;
+    width: 50%;
+    display: block;
+    justify-content: center;
+}
+
+.result-window {
+    width: 50%;
+    
+}
+
+.code-input {
+    position: static;
+    width: 100%;
+    height: 559px;
+    padding-top: 1rem;
+    border: none;
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    font-size: 0.8rem;
+    background-color: rgb(32, 31, 31);
+    white-space: pre-wrap;
+    line-height: 1.5em;
+    word-wrap: break-word;
+    font-size: 0.85rem;
+    opacity: 1;
+    margin: 0;
+    color: hsl(0, 22%, 96%);
+    resize: horizontal;
+    overflow: auto;
+}
+
+.editor-header-button {
+    padding: 5px 5px 0 5px;
+    background: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 25%;
+    color: rgb(21, 159, 228);
+}
+
+.editor-header-button:hover {
+    background-color: rgb(17, 133, 190);
+    color: aliceblue;
+}
+
+.editor-header-button:active {
+    background-color: rgb(46, 103, 126);
+}
+
+.editor-header-button:focus {
+    outline: none;
+    /* box-shadow: 0 0 0 3px rgba(4, 122, 233, 0.4); */
+}
+
+.code-input::-webkit-scrollbar {
+    display: none;
+}
+
+.result-console {
+    background-color: rgb(32, 31, 31);
+    color: rgb(38, 148, 47);
+    border: none;
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    padding: 10px;
+    font-size: 0.65rem;
+    line-height: 1.1rem;
+    overflow-x: hidden;
+    height: 88.2%;
+}
+
+.result-error-console {
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    padding: 10px;
+    font-size: 0.65rem;
+    line-height: 1.1rem;
+    overflow-x: hidden;
+    height: 559px;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(32, 31, 31);
+}
+
+.result-error-console::-webkit-scrollbar {
+    display: none;
+}
+
+.result-console::-webkit-scrollbar {
+    display: none;
+}
+
+.result-player-console {
+    height: 559px;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(32, 31, 31);
+}
+
+.result {
+    background-color: rgb(32, 31, 31);
+    color: rgb(38, 148, 47);
+    border: none;
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    padding: 10px;
+    font-size: 0.65rem;
+    line-height: 1.1rem;
+    overflow: auto;
+    height: 559px;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(32, 31, 31);
+}
+
+.result::-webkit-scrollbar {
+    display: none;
+}
+
+.toolbar {
+    background-color: rgb(65, 66, 66);
+}
+
+.result-nav {
+    background-color: rgb(65, 66, 66);
+}
+
+.nav-link-custom {
+    padding: 13px 1rem;
+    color: aliceblue;
+}
+
+.nav-link-custom:hover {
+    background-color: rgb(78, 77, 77);
+    color: aliceblue;
+}
+
+.box {
+    box-sizing: border-box;
+    flex: 1 1 auto;
+}
+
+.handler {
+    width: 5px;
+    padding: 0;
+    cursor: ew-resize;
+    flex: 0 0 auto;
+}
+
+.handler::before {
+    content: '';
+    display: block;
+    height: 100%;
+    background-color: rgb(65, 66, 66);
+    margin: 0;
+}
+
+@media screen and (max-width: 900px) {
+    /* .result .code-input {
+        width: 25em;
+        height: 100%
+    } */
+    
+    .editor-console-container {
+        display: block;
+        justify-content: center;
+    }
+
+    .code-input {
+        height: 275px;
+    }
+
+    .result {
+        height: 275px;
+    }
+
+    .result-window {
+        height: 50%;
+    }
+
+    .code-editor-container {
+        width: 100%;
+        height: 50%;
+    }
+
+    .result-window {
+        width: 100%;
+    }
+}
