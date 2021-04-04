@@ -3,7 +3,7 @@ import CodeEditor from './components/codeEditor';
 import ResultWindow from './components/resultWindow';
 import './components/styles/editorStyle.css';
 import './components/styles/playerStyles.css';
-import DownloadLink from "react-download-link";
+// import DownloadLink from "react-download-link";
 
 export class SoundCheckApp extends Component {
     state = {
