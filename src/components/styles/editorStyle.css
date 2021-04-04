@@ -43,7 +43,7 @@
 }
 
 .editor-header-button {
-    padding: 5px 5px 0 5px;
+    padding: 4.67px 5px 0 5px;
     background: transparent;
     border-radius: 5px;
     cursor: pointer;
@@ -99,8 +99,17 @@
     display: none;
 }
 
-.result-console::-webkit-scrollbar {
-    display: none;
+.styled-scrollbar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-track {
+    background-color: rgb(32, 31, 31);
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgb(62, 63, 63);
+    height: 0.7in;
 }
 
 .result-player-console {
@@ -123,10 +132,6 @@
     width: 100%;
     padding: 10px;
     background-color: rgb(32, 31, 31);
-}
-
-.result::-webkit-scrollbar {
-    display: none;
 }
 
 .toolbar {

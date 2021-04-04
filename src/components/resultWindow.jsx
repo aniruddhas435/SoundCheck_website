@@ -3,6 +3,7 @@ import AudioPlayer from './AudioPlayer';
 
 const ResultWindow = ({result}) => {
     const [selected, setSelected] = useState('scaledSyntax');
+    const [isPlayerOn, setIsPlayerOn] = useState(false);
 
     const scaledSyntaxRef = useRef();
     const outputRef = useRef();
@@ -17,6 +18,8 @@ const ResultWindow = ({result}) => {
     };
 
     const handleTabSelect = event => {
+        if(isPlayerOn) return;
+
         console.log(event.target.id);
         
         if(event.target.id === 'scaled-syntax' && selected !== 'scaledSyntax') {
@@ -71,14 +74,15 @@ const ResultWindow = ({result}) => {
                         duration={result['duration']}
                         volume={result['volume']}
                         frequencies={result['frequencies']}
-                         />
+                        setIsPlayerOn={setIsPlayerOn} 
+                        />
 
-                        <div className="result-console" key="result-output">
+                        <div className="result-console styled-scrollbar" key="result-output">
                             <div key="output-content">{result['output']}</div>
                         </div>
                     </div>
                 ) : (
-                    <div className="result" key="result-syntax">
+                    <div className="result styled-scrollbar" key="result-syntax">
                         {result['scaledSyntax']}
                     </div>
                 )

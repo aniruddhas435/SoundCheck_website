@@ -19,7 +19,7 @@ export class AudioPlayer extends Component {
     }
 
     stop = (gainDuration) => {
-        console.log('from AudioPlaye.stop');
+        console.log('from AudioPlayer.stop');
         if(gainDuration) {
             this.gainNode.gain.exponentialRampToValueAtTime(
                 0.00001, this.audioContext.currentTime + gainDuration
@@ -44,6 +44,7 @@ export class AudioPlayer extends Component {
             currentIndex: 0,
             audioCurrentTime: 100
         });
+        this.props.setIsPlayerOn(false);
         this.stop(gainDuration);
     };
 
@@ -54,12 +55,14 @@ export class AudioPlayer extends Component {
             });
 
             this.initSource();
+            this.props.setIsPlayerOn(true);
             this.playNextNote();
         } else {
             this.setState({
                 playPause: 'play_arrow'
             });
             this.stop(this.gainDuration);
+            this.props.setIsPlayerOn(false);
         }
     };
 

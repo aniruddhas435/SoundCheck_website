@@ -3,6 +3,7 @@ import CodeEditor from './components/codeEditor';
 import ResultWindow from './components/resultWindow';
 import './components/styles/editorStyle.css';
 import './components/styles/playerStyles.css';
+import DownloadLink from "react-download-link";
 
 export class SoundCheckApp extends Component {
     state = {
@@ -33,14 +34,15 @@ export class SoundCheckApp extends Component {
     };
 
     handleRun = inputCode => {
+        console.log('whatever!');
         postSyntax(
-            'http://localhost:8084//controller/getSequence/', 
+            'https://soundcheck-getsequence.herokuapp.com/controller/getSequence', 
             { 'inputCode': inputCode }
         ).then(data => {
             return data.json();
         }).then(data => {
             // console.log(data);
-
+            
             const scaledSyntax = data['scaled-syntax'].split('\n').map((element, index) => {
                 let lineStyle = {};
                 if(element === '') {
