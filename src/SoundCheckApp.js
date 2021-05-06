@@ -28,8 +28,15 @@ export class SoundCheckApp extends Component {
         
     // };
 
-    handleSave = event => {
-
+    handleSave = inputCode => {
+        console.log('ssdfs');
+        console.log(inputCode);
+        const file = new Blob([inputCode], {type: 'text/plain'});
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(file);
+        link.target = '_blank';
+        link.download = 'your.raag';
+        link.click();
     };
 
     handleRun = inputCode => {
@@ -93,7 +100,7 @@ export class SoundCheckApp extends Component {
                 onRun={this.handleRun}
                 onSave={this.handleSave}
                 className="box"
-                 />
+                />
 
                 <div className="handler" 
                     key="handler"

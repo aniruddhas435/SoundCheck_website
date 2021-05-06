@@ -22,11 +22,20 @@ const CodeEditor = ({onSave, onRun}) => {
         setInputCode('');
     };
 
+    const handleSave = event => {
+        if(inputCode.length === 0) {
+            alert('Editor is empty');
+        } else {
+            console.log(inputCode);
+            onSave(inputCode);
+        }
+    }
+
     return (
         <div className='code-editor-container'>
             <ToolBar
             onReset={handleReset}
-            onSave={onSave}
+            onSave={handleSave}
             onRun={handleRun}
             />
 
