@@ -31,12 +31,21 @@ const CodeEditor = ({onSave, onRun}) => {
         }
     }
 
+    const handleUpload = inputFile => {
+        const reader = new FileReader();
+        reader.addEventListener('load', event => {
+            setInputCode(event.target.result);
+        });
+        reader.readAsText(inputFile);
+    };
+
     return (
         <div className='code-editor-container'>
             <ToolBar
             onReset={handleReset}
             onSave={handleSave}
             onRun={handleRun}
+            onFileUpload={handleUpload}
             />
 
             <div className="code-input">

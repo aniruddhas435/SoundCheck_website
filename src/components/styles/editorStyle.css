@@ -64,7 +64,6 @@
 
 .editor-header-button:focus {
     outline: none;
-    /* box-shadow: 0 0 0 3px rgba(4, 122, 233, 0.4); */
 }
 
 .code-input::-webkit-scrollbar {
