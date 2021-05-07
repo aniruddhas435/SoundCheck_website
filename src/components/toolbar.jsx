@@ -12,25 +12,6 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload }) => {
         fileUpload.current.click();
     };
 
-    // const handleDragOver = event => {
-    //     event.stopPropagation();
-    //     event.preventDefault();
-    //     event.dataTransfer.dropEffect = 'copy';
-    // };
-
-    // const handleDrop = event => {
-    //     event.stopPropagation();
-    //     event.preventDefault();
-    //     const files = event.dataTransfer.files;
-        
-    //     if(files.length > 1) {
-    //         alert('More than one file cannot be uploaded !');
-    //         return;
-    //     }
-
-    //     onFileUpload(files[0]);
-    // };
-
     return (
         <div className="toolbar button-group">
             <button 
@@ -58,8 +39,6 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload }) => {
             <button 
             className='editor-header-button m-2'
             onClick={uploadClicked}
-            // onDragOver={handleDragOver}
-            // onDrop={handleDrop}
             title="Upload">
                 <span className="material-icons">upload</span> 
             </button>
