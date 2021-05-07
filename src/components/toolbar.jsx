@@ -12,10 +12,6 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload }) => {
         fileUpload.current.click();
     };
 
-    const func = () => {
-        console.log('whatever !');
-    };
-
     return (
         <div className="toolbar button-group">
             <button 
