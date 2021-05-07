@@ -22,6 +22,32 @@ const CodeEditor = ({onSave, onRun}) => {
         setInputCode('');
     };
 
+    const handleDragOver = event => {
+        event.stopPropagation();
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy';
+    };
+
+    const handleDrop = event => {
+        event.stopPropagation();
+        event.preventDefault();
+        const files = event.dataTransfer.files;
+        
+        if(files.length > 1) {
+            alert('More than one file cannot be uploaded !');
+            return;
+        }
+
+        const type = files[0].name.split('.').pop();
+        console.log(type);
+
+        if(type !== "raag") {
+            alert('The file does not have .raag extension');
+            return;
+        }
+        handleUpload(files[0]);
+    };
+
     const handleSave = event => {
         if(inputCode.length === 0) {
             alert('Editor is empty');
@@ -48,7 +74,10 @@ const CodeEditor = ({onSave, onRun}) => {
             onFileUpload={handleUpload}
             />
 
-            <div className="code-input">
+            <div 
+            className="code-input"
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}>
                 <MonacoEditor 
                     width="100%"
                     height="100%"
