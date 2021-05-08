@@ -42,6 +42,26 @@
     overflow: auto;
 }
 
+.buttons {
+    display: flex;
+} 
+
+#toolbar-filename {
+    color: aliceblue;
+    margin: .5em;
+    padding: 5px 5px 5px 9px;
+    position: absolute;
+    /* border: 3px solid grey; */
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(32, 31, 31);
+    width: 10em;
+}
+
+#toolbar-filename:focus {
+    outline: none;
+}
+
 .editor-header-button {
     padding: 4.67px 5px 0 5px;
     background: transparent;

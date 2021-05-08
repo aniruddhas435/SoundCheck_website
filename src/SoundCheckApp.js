@@ -28,14 +28,18 @@ export class SoundCheckApp extends Component {
         
     // };
 
-    handleSave = inputCode => {
+    handleSave = (inputCode, fileName) => {
         console.log('ssdfs');
         console.log(inputCode);
         const file = new Blob([inputCode], {type: 'text/plain'});
         const link = document.createElement('a');
         link.href = URL.createObjectURL(file);
         link.target = '_blank';
-        link.download = 'your.raag';
+        if(fileName.split('.').pop() !== 'raag') {
+            alert('filename has to be with .raag extention');
+            return;
+        }
+        link.download = fileName;
         link.click();
     };
 

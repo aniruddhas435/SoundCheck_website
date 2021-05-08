@@ -8,6 +8,7 @@ const CodeEditor = ({onSave, onRun}) => {
     };
 
     const [inputCode, setInputCode] = useState('');
+    const [fileName, setFileName] = useState('your.raag');
 
     const handleRun = () => {
         if(inputCode.length === 0) {
@@ -53,17 +54,22 @@ const CodeEditor = ({onSave, onRun}) => {
             alert('Editor is empty');
         } else {
             console.log(inputCode);
-            onSave(inputCode);
+            onSave(inputCode, fileName);
         }
-    }
+    };
 
     const handleUpload = inputFile => {
         const reader = new FileReader();
+        setFileName(inputFile.name);
         reader.addEventListener('load', event => {
             setInputCode(event.target.result);
         });
         reader.readAsText(inputFile);
     };
+
+    const handleFileNameChange = event => {
+        setFileName(event.target.value);
+    }
 
     return (
         <div className='code-editor-container'>
@@ -72,6 +78,8 @@ const CodeEditor = ({onSave, onRun}) => {
             onSave={handleSave}
             onRun={handleRun}
             onFileUpload={handleUpload}
+            fileName={fileName}
+            onChange={handleFileNameChange}
             />
 
             <div 

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-const ToolBar = ({ onReset, onRun, onSave, onFileUpload }) => {
+const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) => {
     const fileUpload = useRef();
 
     const onFileInput = () => {
@@ -13,7 +13,7 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload }) => {
     };
 
     return (
-        <div className="toolbar button-group">
+        <div className="toolbar">
             <button 
             className='editor-header-button m-2'
             onClick={onReset}
@@ -40,8 +40,20 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload }) => {
             className='editor-header-button m-2'
             onClick={uploadClicked}
             title="Upload">
-                <span className="material-icons">upload</span> 
+                <span className="material-icons">upload</span>
             </button>
+
+            {/* <span
+            id="toolbar-filename"
+            title="File Name">
+                {fileName}
+            </span> */}
+            <input 
+            type="text" 
+            value={fileName} 
+            id="toolbar-filename"
+            onChange={onChange}
+            placeholder="filename.."/>
 
             <button 
             className='editor-header-button m-2 float-right'
