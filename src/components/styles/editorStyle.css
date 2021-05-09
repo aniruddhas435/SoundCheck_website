@@ -48,14 +48,15 @@
 
 #toolbar-filename {
     color: aliceblue;
-    margin: .5em;
-    padding: 5px 5px 5px 9px;
+    margin: .3em;
+    padding: 10px 15px;
     position: absolute;
-    /* border: 3px solid grey; */
+    /* border: 3px solid rgb(32, 31, 31); */
     border-radius: 10px;
     border: none;
     background-color: rgb(32, 31, 31);
     width: 10em;
+    font-size: 14.44px;
 }
 
 #toolbar-filename:focus {
