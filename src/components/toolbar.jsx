@@ -53,7 +53,7 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) =
             value={fileName} 
             id="toolbar-filename"
             onChange={onChange}
-            spellcheck="false"
+            spellCheck="false"
             placeholder="filename.."/>
 
             <button 

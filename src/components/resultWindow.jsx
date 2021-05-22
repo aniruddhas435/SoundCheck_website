@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import AudioPlayer from './AudioPlayer';
 
-const ResultWindow = ({result}) => {
+const ResultWindow = ({result, isLoading}) => {
     const [selected, setSelected] = useState('scaledSyntax');
     const [isPlayerOn, setIsPlayerOn] = useState(false);
 
@@ -63,32 +63,38 @@ const ResultWindow = ({result}) => {
                 </li>
             </ul>
 
-            {result['error'] === false ? (
-                selected === 'output' ? (
-                    <div 
-                    className="result-player-console" 
-                    key="result-player-console">
-                        <AudioPlayer 
-                        key="audio-player"
-                        notes={result['notes']}
-                        duration={result['duration']}
-                        volume={result['volume']}
-                        frequencies={result['frequencies']}
-                        setIsPlayerOn={setIsPlayerOn} 
-                        />
+            {!isLoading ? (
+                result['error'] === false ? (
+                    selected === 'output' ? (
+                        <div 
+                        className="result-player-console" 
+                        key="result-player-console">
+                            <AudioPlayer 
+                            key="audio-player"
+                            notes={result['notes']}
+                            duration={result['duration']}
+                            volume={result['volume']}
+                            frequencies={result['frequencies']}
+                            setIsPlayerOn={setIsPlayerOn} 
+                            />
 
-                        <div className="result-console styled-scrollbar" key="result-output">
-                            <div key="output-content">{result['output']}</div>
+                            <div className="result-console styled-scrollbar" key="result-output">
+                                <div key="output-content">{result['output']}</div>
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="result styled-scrollbar" key="result-syntax">
+                            {result['scaledSyntax']}
+                        </div>
+                    )
                 ) : (
-                    <div className="result styled-scrollbar" key="result-syntax">
-                        {result['scaledSyntax']}
+                    <div className="result-error-console" key="result-error" style={errorStyle}>
+                        {selected === 'output' ? (result['output']) : result['scaledSyntax']}
                     </div>
                 )
             ) : (
-                <div className="result-error-console" key="result-error" style={errorStyle}>
-                    {selected === 'output' ? (result['output']) : result['scaledSyntax']}
+                <div className="loading">
+                    <div className="loader"></div>
                 </div>
             )}       
             

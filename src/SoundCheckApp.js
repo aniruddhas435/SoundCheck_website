@@ -14,7 +14,8 @@ export class SoundCheckApp extends Component {
             'scaledSyntax': 'This is the scaled syntax tab',
             'error': false,
             'soundBytes': []
-        }
+        },
+        isLoadingResult: false
     };
 
     // handleDragg = event => {
@@ -44,11 +45,17 @@ export class SoundCheckApp extends Component {
     };
 
     handleRun = inputCode => {
-        console.log('whatever!');
+        console.log('turning \'loading\' on...');
+        this.setState({
+            isLoadingResult: true
+        });
         postSyntax(
             'https://soundcheck-getsequence.herokuapp.com/controller/getSequence', 
             { 'inputCode': inputCode }
         ).then(data => {
+            this.setState({
+                isLoadingResult: false
+            });
             return data.json();
         }).then(data => {
             // console.log(data);
@@ -112,7 +119,11 @@ export class SoundCheckApp extends Component {
                     onMouseUp= {() => this.setState({isHandlerDragging: false})}
                 />
 
-                <ResultWindow key="result-window" className="box" result={this.state.result} />
+                <ResultWindow 
+                key="result-window" 
+                className="box" 
+                result={this.state.result}
+                isLoading={this.state.isLoadingResult} />
             </div>
         );
     }

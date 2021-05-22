@@ -154,6 +154,34 @@
     background-color: rgb(32, 31, 31);
 }
 
+.loading {
+    height: 559px;
+    width: 100%;
+    background-color: rgb(30, 30, 31);
+    color: aliceblue;
+}
+
+.loading div {
+    position: relative;
+    top: 40%;
+    left: 45%;
+    
+}
+
+.loader {
+    border: 12px solid #cecaca; /* Light grey */
+    border-top: 12px solid #808283; /* Blue */
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    animation: spin 1s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .toolbar {
     background-color: rgb(65, 66, 66);
 }
