@@ -48,6 +48,7 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) =
             title="File Name">
                 {fileName}
             </span> */}
+
             <input 
             type="text" 
             value={fileName} 
@@ -55,6 +56,8 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) =
             onChange={onChange}
             spellCheck="false"
             placeholder="filename.."/>
+
+            
 
             <button 
             className='editor-header-button m-2 float-right'

@@ -89,7 +89,7 @@ export class AudioPlayer extends Component {
     };
 
     playNextNote = () => {
-        if(this.props.selected === 'scaledSyntax') {
+        if(this.props.selected === 'scaledSyntax' || this.props.isLoading) {
             this.stop();
             return;
         }

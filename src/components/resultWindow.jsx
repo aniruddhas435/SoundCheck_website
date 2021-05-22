@@ -76,6 +76,7 @@ const ResultWindow = ({result, isLoading}) => {
                             volume={result['volume']}
                             frequencies={result['frequencies']}
                             setIsPlayerOn={setIsPlayerOn} 
+                            isLoading={isLoading}
                             />
 
                             <div className="result-console styled-scrollbar" key="result-output">
