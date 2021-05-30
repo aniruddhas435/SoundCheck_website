@@ -63,44 +63,71 @@ const ResultWindow = ({result, isLoading}) => {
                 </li>
             </ul>
 
-            {!isLoading ? (
-                result['error'] === false ? (
-                    selected === 'output' ? (
-                        <div 
-                        className="result-player-console" 
-                        key="result-player-console">
-                            <AudioPlayer 
-                            key="audio-player"
-                            notes={result['notes']}
-                            duration={result['duration']}
-                            volume={result['volume']}
-                            frequencies={result['frequencies']}
-                            setIsPlayerOn={setIsPlayerOn} 
-                            isLoading={isLoading}
-                            />
-
-                            <div className="result-console styled-scrollbar" key="result-output">
-                                <div key="output-content">{result['output']}</div>
+            {result['error'] === false ? (
+                selected === 'output' ? (
+                    <div 
+                    className="result-player-console" 
+                    key="result-player-console">
+                        {isLoading ? (
+                            <div className="loading">
+                                <div className="loader"></div>
                             </div>
+                        ) : (
+                            <div className="loading" style={displayNone}>
+                                <div className="loader"></div>
+                            </div>
+                        )}
+
+                        <AudioPlayer 
+                        key="audio-player"
+                        notes={result['notes']}
+                        duration={result['duration']}
+                        volume={result['volume']}
+                        frequencies={result['frequencies']}
+                        setIsPlayerOn={setIsPlayerOn} 
+                        isLoading={isLoading}
+                        />
+
+                        <div className="result-console styled-scrollbar" key="result-output">
+                            <div key="output-content">{result['output']}</div>
                         </div>
-                    ) : (
-                        <div className="result styled-scrollbar" key="result-syntax">
-                            {result['scaledSyntax']}
-                        </div>
-                    )
+                    </div>
                 ) : (
-                    <div className="result-error-console" key="result-error" style={errorStyle}>
-                        {selected === 'output' ? (result['output']) : result['scaledSyntax']}
+                    <div className="result styled-scrollbar" key="result-syntax">
+                        {isLoading ? (
+                            <div className="loading">
+                                <div className="loader"></div>
+                            </div>
+                        ) : (
+                            <div className="loading" style={displayNone}>
+                                <div className="loader"></div>
+                            </div>
+                        )}
+
+                        {result['scaledSyntax']}
                     </div>
                 )
             ) : (
-                <div className="loading">
-                    <div className="loader"></div>
+                <div className="result-error-console" key="result-error" style={errorStyle}>
+                    {isLoading ? (
+                        <div className="loading">
+                            <div className="loader"></div>
+                        </div>
+                    ) : (
+                        <div className="loading" style={displayNone}>
+                            <div className="loader"></div>
+                        </div>
+                    )}
+                    {selected === 'output' ? (result['output']) : result['scaledSyntax']}
                 </div>
             )}       
             
         </div>
     );
-}
+};
+
+const displayNone = {
+    display: 'none'
+};
  
 export default ResultWindow;

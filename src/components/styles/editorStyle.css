@@ -157,15 +157,16 @@
 .loading {
     height: 559px;
     width: 100%;
-    background-color: rgb(30, 30, 31);
-    color: aliceblue;
+    background-color: rgba(26, 25, 25, 0.5);
+    position: fixed;
+    z-index: 2;
+    opacity: 0.4;
 }
 
 .loading div {
     position: relative;
     top: 40%;
-    left: 45%;
-    
+    left: 22%;
 }
 
 .loader {

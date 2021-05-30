@@ -53,12 +53,12 @@ export class SoundCheckApp extends Component {
             'https://soundcheck-getsequence.herokuapp.com/controller/getSequence', 
             { 'inputCode': inputCode }
         ).then(data => {
-            this.setState({
-                isLoadingResult: false
-            });
             return data.json();
         }).then(data => {
             // console.log(data);
+            this.setState({
+                isLoadingResult: false
+            });
             
             const scaledSyntax = data['scaled-syntax'].split('\n').map((element, index) => {
                 let lineStyle = {};
@@ -93,6 +93,9 @@ export class SoundCheckApp extends Component {
                 }
             });
         }).catch(error => {
+            this.setState({
+                isLoadingResult: false
+            });
             this.setState({
                 result: {
                     'scaledSyntax': "",
