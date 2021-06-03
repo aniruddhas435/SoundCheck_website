@@ -47,7 +47,7 @@
 } 
 
 #toolbar-filename {
-    color: aliceblue;
+    color: rgb(225, 226, 228);
     margin: .3em;
     padding: 10px 15px;
     position: absolute;
@@ -57,10 +57,32 @@
     background-color: rgb(32, 31, 31);
     width: 10em;
     font-size: 14.44px;
+    font-family: monospace;
 }
 
 #toolbar-filename:focus {
     outline: none;
+}
+
+#toolbar-select {
+    appearance: none;
+    color: rgb(225, 226, 228);
+    margin: .3em;
+    padding: 10.2px 15px;
+    position: absolute;
+    left: 22em;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(32, 31, 31);
+    width: 18em;
+    font-size: 14px;
+    font-family: monospace;
+    align-items: center;
+    outline: none;
+}
+
+#toolbar-select::after {
+    content: "aihiad";
 }
 
 .editor-header-button {

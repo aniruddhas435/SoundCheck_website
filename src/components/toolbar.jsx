@@ -43,12 +43,6 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) =
                 <span className="material-icons">upload</span>
             </button>
 
-            {/* <span
-            id="toolbar-filename"
-            title="File Name">
-                {fileName}
-            </span> */}
-
             <input 
             type="text" 
             value={fileName} 
@@ -57,7 +51,10 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) =
             spellCheck="false"
             placeholder="filename.."/>
 
-            
+            {/* <select name="raag" id="toolbar-select">
+                <option value="mkm">miyan_ki_malhar.raag</option>
+                <option value="malkauns">malkauns.raag</option>
+            </select> */}
 
             <button 
             className='editor-header-button m-2 float-right'
