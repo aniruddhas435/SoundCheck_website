@@ -51,10 +51,10 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) =
             spellCheck="false"
             placeholder="filename.."/>
 
-            {/* <select name="raag" id="toolbar-select">
+            <select name="raag" id="toolbar-select">
                 <option value="mkm">miyan_ki_malhar.raag</option>
                 <option value="malkauns">malkauns.raag</option>
-            </select> */}
+            </select>
 
             <button 
             className='editor-header-button m-2 float-right'
