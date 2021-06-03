@@ -52,8 +52,8 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) =
             placeholder="filename.."/>
 
             <select name="raag" id="toolbar-select">
-                <option value="mkm">miyan_ki_malhar.raag</option>
-                <option value="malkauns">malkauns.raag</option>
+                <option value="mkm_raag">miyan_ki_malhar.raag</option>
+                <option value="malkauns_raag">malkauns.raag</option>
             </select>
 
             <button 
