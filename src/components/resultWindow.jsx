@@ -74,4 +74,4 @@ class ResultWindow extends Component {
     }
 }
 
-export default ResponseWindow;
+export default ResultWindow;
