@@ -11,5 +11,5 @@ const ResultSyntaxConsole = ({isLoading, result}) => {
         </div>
     );
 };
- 
+
 export default ResultSyntaxConsole;
