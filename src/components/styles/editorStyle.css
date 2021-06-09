@@ -165,7 +165,7 @@
     background-color: rgb(32, 31, 31);
     color: rgb(38, 148, 47);
     border: none;
-    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    font-family: monospace;
     padding: 10px;
     font-size: 0.65rem;
     line-height: 1.1rem;
