@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadingWithShadow = ({isLoading}) => {
+const LoadWithShadow = ({isLoading}) => {
     return (
         <div>
             {isLoading ? (
@@ -20,4 +20,4 @@ const displayNone = {
     display: 'none'
 };
  
-export default LoadingWithShadow;
+export default LoadWithShadow;

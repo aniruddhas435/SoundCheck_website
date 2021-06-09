@@ -163,16 +163,16 @@
 
 .result {
     background-color: rgb(32, 31, 31);
-    color: rgb(38, 148, 47);
+    color: rgb(131, 38, 143);
     border: none;
     font-family: monospace;
     padding: 10px;
-    font-size: 0.65rem;
+    font-size: 0.85rem;
     line-height: 1.1rem;
     overflow: auto;
     height: 559px;
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     background-color: rgb(32, 31, 31);
 }
 
