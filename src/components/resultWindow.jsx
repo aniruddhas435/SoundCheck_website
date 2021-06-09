@@ -56,7 +56,11 @@ class ResultWindow extends Component {
                         <ResultPlayerConsole
                         result={this.props.result}
                         isLoading={this.props.isLoading}
-                        setIsPlayerOn={this.setIsPlayerOn} />
+                        setIsPlayerOn={param => {
+                            this.setState({
+                                isPlayerOn: param
+                            });
+                        }} />
                     ) : (
                         <ResultSyntaxConsole
                         isLoading={isLoading}
