@@ -4,7 +4,7 @@ import ResultPlayerConsole from './ResultPlayerConsole';
 import ResultSyntaxConsole from './ResultSyntaxConsole';
 import ResultErrorConsole from './ResultErrorConsole';
 
-class ResponseWindow extends Component {
+class ResultWindow extends Component {
     state = {
         selected: 'output',
         isPlayerOn: false
