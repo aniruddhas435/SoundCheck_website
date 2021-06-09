@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CodeEditor from './components/codeEditor';
-import ResponseWindow from './components/ResponseWindow';
+import ResultWindow from './components/ResultWindow';
 import './components/styles/editorStyle.css';
 import './components/styles/playerStyles.css';
 
@@ -122,7 +122,7 @@ export class SoundCheckApp extends Component {
                     onMouseUp= {() => this.setState({isHandlerDragging: false})}
                 />
 
-                <ResponseWindow 
+                <ResultWindow 
                 key="result-window" 
                 className="box" 
                 result={this.state.result}
