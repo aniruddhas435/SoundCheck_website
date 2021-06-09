@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CodeEditor from './components/codeEditor';
-import ResultWindow from './components/ResultWindow';
+import ResultWindow from './components/resultWindow';
 import './components/styles/editorStyle.css';
 import './components/styles/playerStyles.css';
 
