@@ -7,7 +7,7 @@ const ResultSyntaxConsole = ({isLoading, result}) => {
             <LoadWithShadow
             isLoading={isLoading}
             />
-            {result['scaledSyntax']}
+            <div id="ssDummyText" style={{width: 'fit-content'}}>{result['scaledSyntax']}</div>
         </div>
     );
 };

@@ -18,6 +18,11 @@ export class SoundCheckApp extends Component {
         isLoadingResult: false
     };
 
+    constructor() {
+        super();
+        this.ssCharacterWidth = 0;
+    }
+
     // handleDragg = event => {
     //     if(!this.state.isHandlerDragging) {
     //         return false;
@@ -55,10 +60,13 @@ export class SoundCheckApp extends Component {
         ).then(data => {
             return data.json();
         }).then(data => {
-            // console.log(data);
+            // console.log(data); 
             this.setState({
                 isLoadingResult: false
             });
+
+            const ssDummyText = document.getElementById('ssDummyText');
+            this.ssCharacterWidth = ssDummyText.clientWidth / ssDummyText.innerText.length;
             
             // const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
             //     let lineStyle = {};
@@ -93,18 +101,21 @@ export class SoundCheckApp extends Component {
                     }
 
                     if(line.includes('->')) {
-                        const leftSpaces = line.indexOf('->') + count;
+                        const indexOfArrow = line.indexOf('->');
                         const fragments = line.split('|');
 
                         return fragments.map((fragment, idx) => {
                             if(index === 0) {
-                                return <div key={idx} style={
-                                    { paddingLeft: '' + count * 5.6 + 'px' }
-                                }>{fragment}</div>
+                                console.log(count);
+                                return (<div key={idx} style={
+                                    { paddingLeft: '' + count * this.ssCharacterWidth + 'px' }
+                                }>{fragment}</div>);
                             } else {
-                                return <div key={idx} style={
-                                    { paddingLeft: '' + leftSpaces * 5.6 + 'px' }
-                                }>{fragment}</div>
+                                const leftSpaces = indexOfArrow + count;
+                                console.log(leftSpaces);
+                                return (<div key={idx} style={
+                                    { paddingLeft: '' + leftSpaces * this.ssCharacterWidth + 'px' }
+                                }>{'|' + fragment}</div>);
                             }
                         });
                     } else {
