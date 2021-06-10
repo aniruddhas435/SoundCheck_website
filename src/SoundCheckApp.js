@@ -60,19 +60,61 @@ export class SoundCheckApp extends Component {
                 isLoadingResult: false
             });
             
-            const scaledSyntax = data['scaled-syntax'].split('\n').map((element, index) => {
-                let lineStyle = {};
-                if(element === '') {
-                    lineStyle = {padding: '5px 0'};
-                } else if(element.charAt(0) === '\t') {
-                    let count = 4;
-                    for(let i = 1; i < element.length && element.charAt(i) === '\t'; i++) {
-                        count += 4;
-                    }
-                    lineStyle = {paddingLeft: '' + count * 5.6 + 'px'};
-                }
+            // const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
+            //     let lineStyle = {};
+            //     if(line === '') {
+            //         lineStyle = {padding: '5px 0'};
+            //     } else if(line.charAt(0) === '\t') {
+            //         let count = 4;
+            //         for(let i = 1; i < line.length && line.charAt(i) === '\t'; i++) {
+            //             count += 4;
+            //         }
+                    
+            //         lineStyle = {
+            //             paddingLeft: '' + count * 5.6 + 'px',
+            //         };
+            //     }
 
-                return <div key={index} style={lineStyle}>{element}</div>;
+            //     return <div key={index} style={lineStyle}>{line}</div>;
+            // });
+
+            const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
+                let lineStyle = {};
+                let count = 0;
+
+                if(line === '') {
+                    lineStyle = {padding: '5px, 0'};
+                    return <div key={index} style={lineStyle}>{line}</div>;
+                } else {
+                    if(line.charAt(0) === '\t') {
+                        for(let i = 0; i < line.length && line.charAt(i) === '\t'; i++) {
+                            count += 4;
+                        }
+                    }
+
+                    if(line.includes('->')) {
+                        const leftSpaces = line.indexOf('->') + count;
+                        const fragments = line.split('|');
+
+                        return fragments.map((fragment, idx) => {
+                            if(index === 0) {
+                                return <div key={idx} style={
+                                    { paddingLeft: '' + count * 5.6 + 'px' }
+                                }>{fragment}</div>
+                            } else {
+                                return <div key={idx} style={
+                                    { paddingLeft: '' + leftSpaces * 5.6 + 'px' }
+                                }>{fragment}</div>
+                            }
+                        });
+                    } else {
+                        lineStyle = {
+                            paddingLeft: '' + count * 5.6 + 'px',
+                        };
+
+                        return <div key={index} style={lineStyle}>{line}</div>;
+                    }
+                }
             });
 
             const output = data['output'].split('\n').map(element => {
