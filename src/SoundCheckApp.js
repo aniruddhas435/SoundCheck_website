@@ -60,7 +60,7 @@ export class SoundCheckApp extends Component {
         ).then(data => {
             return data.json();
         }).then(data => {
-            // console.log(data); 
+            console.log(data); 
             this.setState({
                 isLoadingResult: false
             });
