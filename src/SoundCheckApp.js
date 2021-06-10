@@ -68,65 +68,65 @@ export class SoundCheckApp extends Component {
             const ssDummyText = document.getElementById('ssDummyText');
             this.ssCharacterWidth = ssDummyText.clientWidth / ssDummyText.innerText.length;
             
-            // const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
-            //     let lineStyle = {};
-            //     if(line === '') {
-            //         lineStyle = {padding: '5px 0'};
-            //     } else if(line.charAt(0) === '\t') {
-            //         let count = 4;
-            //         for(let i = 1; i < line.length && line.charAt(i) === '\t'; i++) {
-            //             count += 4;
-            //         }
-                    
-            //         lineStyle = {
-            //             paddingLeft: '' + count * 5.6 + 'px',
-            //         };
-            //     }
-
-            //     return <div key={index} style={lineStyle}>{line}</div>;
-            // });
-
             const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
                 let lineStyle = {};
-                let count = 0;
-
                 if(line === '') {
-                    lineStyle = {padding: '5px, 0'};
-                    return <div key={index} style={lineStyle}>{line}</div>;
-                } else {
-                    if(line.charAt(0) === '\t') {
-                        for(let i = 0; i < line.length && line.charAt(i) === '\t'; i++) {
-                            count += 4;
-                        }
+                    lineStyle = {padding: '5px 0'};
+                } else if(line.charAt(0) === '\t') {
+                    let count = 4;
+                    for(let i = 1; i < line.length && line.charAt(i) === '\t'; i++) {
+                        count += 4;
                     }
-
-                    if(line.includes('->')) {
-                        const indexOfArrow = line.indexOf('->');
-                        const fragments = line.split('|');
-
-                        return fragments.map((fragment, idx) => {
-                            if(index === 0) {
-                                console.log(count);
-                                return (<div key={idx} style={
-                                    { paddingLeft: '' + count * this.ssCharacterWidth + 'px' }
-                                }>{fragment}</div>);
-                            } else {
-                                const leftSpaces = indexOfArrow + count;
-                                console.log(leftSpaces);
-                                return (<div key={idx} style={
-                                    { paddingLeft: '' + leftSpaces * this.ssCharacterWidth + 'px' }
-                                }>{'|' + fragment}</div>);
-                            }
-                        });
-                    } else {
-                        lineStyle = {
-                            paddingLeft: '' + count * 5.6 + 'px',
-                        };
-
-                        return <div key={index} style={lineStyle}>{line}</div>;
-                    }
+                    
+                    lineStyle = {
+                        paddingLeft: '' + count * 5.6 + 'px',
+                    };
                 }
+
+                return <div key={index} style={lineStyle}>{line}</div>;
             });
+
+            // const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
+            //     let lineStyle = {};
+            //     let count = 0;
+
+            //     if(line === '') {
+            //         lineStyle = {padding: '5px, 0'};
+            //         return <div key={index} style={lineStyle}>{line}</div>;
+            //     } else {
+            //         if(line.charAt(0) === '\t') {
+            //             for(let i = 0; i < line.length && line.charAt(i) === '\t'; i++) {
+            //                 count += 4;
+            //             }
+            //         }
+
+            //         if(line.includes('->')) {
+            //             const indexOfArrow = line.indexOf('->');
+            //             const fragments = line.split('|');
+
+            //             return fragments.map((fragment, idx) => {
+            //                 if(index === 0) {
+            //                     console.log(count);
+            //                     return (<div key={idx} style={
+            //                         { paddingLeft: '' + count * this.ssCharacterWidth + 'px' }
+            //                     }>{fragment}</div>);
+            //                 } else {
+            //                     const leftSpaces = indexOfArrow + count;
+            //                     console.log(leftSpaces);
+            //                     return (<div key={idx} style={
+            //                         { paddingLeft: '' + leftSpaces * this.ssCharacterWidth + 'px' }
+            //                     }>{'|' + fragment}</div>);
+            //                 }
+            //             });
+            //         } else {
+            //             lineStyle = {
+            //                 paddingLeft: '' + count * 5.6 + 'px',
+            //             };
+
+            //             return <div key={index} style={lineStyle}>{line}</div>;
+            //         }
+            //     }
+            // });
 
             const output = data['output'].split('\n').map(element => {
                 return <div>{element}</div>;
