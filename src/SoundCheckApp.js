@@ -18,6 +18,11 @@ export class SoundCheckApp extends Component {
         isLoadingResult: false
     };
 
+    constructor() {
+        super();
+        this.ssCharacterWidth = 0;
+    }
+
     // handleDragg = event => {
     //     if(!this.state.isHandlerDragging) {
     //         return false;
@@ -55,25 +60,73 @@ export class SoundCheckApp extends Component {
         ).then(data => {
             return data.json();
         }).then(data => {
-            // console.log(data);
+            console.log(data); 
             this.setState({
                 isLoadingResult: false
             });
+
+            const ssDummyText = document.getElementById('ssDummyText');
+            this.ssCharacterWidth = ssDummyText.clientWidth / ssDummyText.innerText.length;
             
-            const scaledSyntax = data['scaled-syntax'].split('\n').map((element, index) => {
+            const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
                 let lineStyle = {};
-                if(element === '') {
+                if(line === '') {
                     lineStyle = {padding: '5px 0'};
-                } else if(element.charAt(0) === '\t') {
+                } else if(line.charAt(0) === '\t') {
                     let count = 4;
-                    for(let i = 1; i < element.length && element.charAt(i) === '\t'; i++) {
+                    for(let i = 1; i < line.length && line.charAt(i) === '\t'; i++) {
                         count += 4;
                     }
-                    lineStyle = {paddingLeft: '' + count * 5.6 + 'px'};
+                    
+                    lineStyle = {
+                        paddingLeft: '' + count * 5.6 + 'px',
+                    };
                 }
 
-                return <div key={index} style={lineStyle}>{element}</div>;
+                return <div key={index} style={lineStyle}>{line}</div>;
             });
+
+            // const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
+            //     let lineStyle = {};
+            //     let count = 0;
+
+            //     if(line === '') {
+            //         lineStyle = {padding: '5px, 0'};
+            //         return <div key={index} style={lineStyle}>{line}</div>;
+            //     } else {
+            //         if(line.charAt(0) === '\t') {
+            //             for(let i = 0; i < line.length && line.charAt(i) === '\t'; i++) {
+            //                 count += 4;
+            //             }
+            //         }
+
+            //         if(line.includes('->')) {
+            //             const indexOfArrow = line.indexOf('->');
+            //             const fragments = line.split('|');
+
+            //             return fragments.map((fragment, idx) => {
+            //                 if(index === 0) {
+            //                     console.log(count);
+            //                     return (<div key={idx} style={
+            //                         { paddingLeft: '' + count * this.ssCharacterWidth + 'px' }
+            //                     }>{fragment}</div>);
+            //                 } else {
+            //                     const leftSpaces = indexOfArrow + count;
+            //                     console.log(leftSpaces);
+            //                     return (<div key={idx} style={
+            //                         { paddingLeft: '' + leftSpaces * this.ssCharacterWidth + 'px' }
+            //                     }>{'|' + fragment}</div>);
+            //                 }
+            //             });
+            //         } else {
+            //             lineStyle = {
+            //                 paddingLeft: '' + count * 5.6 + 'px',
+            //             };
+
+            //             return <div key={index} style={lineStyle}>{line}</div>;
+            //         }
+            //     }
+            // });
 
             const output = data['output'].split('\n').map(element => {
                 return <div>{element}</div>;

@@ -7,7 +7,7 @@ const ResultErrorConsole = ({selected, isLoading, result}) => {
             <LoadWithShadow
             isLoading={isLoading}
             />
-            {this.state.selected === 'output' ? (
+            {selected === 'output' ? (
                 result['output']
             ) : result['scaledSyntax']}
         </div>
