@@ -110,7 +110,7 @@ export class SoundCheckApp extends Component {
                         const fragments = line.split('|');
 
                         return fragments.map((fragment, idx) => {
-                            if(index === 0) {
+                            if(idx === 0) {
                                 console.log(count);
                                 return (<div key={idx} style={
                                     { paddingLeft: '' + count * 5.6 + 'px' }
