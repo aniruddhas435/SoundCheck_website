@@ -91,6 +91,7 @@ export class SoundCheckApp extends Component {
             //     return <div key={index} style={lineStyle}>{line}</div>;
             // });
 
+            console.log(this.ssTextRef.current.clientWidth);
             const ssCharWidth = this.ssTextRef.current.clientWidth / this.ssTextRef.current.innerHTML;
 
             const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
