@@ -65,11 +65,13 @@ export class SoundCheckApp extends Component {
                 isLoadingResult: false
             });
 
-            const ssDummyText = document.getElementById('ssDummyText');
-            console.log(ssDummyText.clientWidth, ssDummyText.innerHTML.length);
-            this.ssCharacterWidth = ssDummyText.clientWidth / ssDummyText.innerHTML.length;
+            // console.log('starting to fetch Dummy')
 
-            console.log(this.ssCharacterWidth);
+            // const ssDummyText = document.getElementById('ssDummyText');
+            // console.log(ssDummyText.clientWidth, ssDummyText.innerHTML.length);
+            // this.ssCharacterWidth = ssDummyText.clientWidth / ssDummyText.innerHTML.length;
+
+            // console.log(this.ssCharacterWidth);
             
             const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
                 let lineStyle = {};
