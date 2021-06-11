@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import CodeEditor from './components/codeEditor';
 import ResultWindow from './components/resultWindow';
 import './components/styles/editorStyle.css';
@@ -20,7 +20,7 @@ export class SoundCheckApp extends Component {
 
     constructor() {
         super();
-        this.ssCharacterWidth = 0;
+        this.ssTextRef = createRef();
     }
 
     // handleDragg = event => {
@@ -91,6 +91,8 @@ export class SoundCheckApp extends Component {
             //     return <div key={index} style={lineStyle}>{line}</div>;
             // });
 
+            const ssCharWidth = this.ssTextRef.current.clientWidth / this.ssTextRef.current.innerHTML;
+
             const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
                 let lineStyle = {};
                 let count = 0;
@@ -113,19 +115,19 @@ export class SoundCheckApp extends Component {
                             if(idx === 0) {
                                 console.log(count);
                                 return (<div key={idx} style={
-                                    { paddingLeft: '' + count * 5.6 + 'px' }
+                                    { paddingLeft: '' + count * ssCharWidth + 'px' }
                                 }>{fragment}</div>);
                             } else {
                                 const leftSpaces = indexOfArrow + count;
                                 console.log(leftSpaces);
                                 return (<div key={idx} style={
-                                    { paddingLeft: '' + leftSpaces * 5.6 + 'px' }
+                                    { paddingLeft: '' + leftSpaces * ssCharWidth + 'px' }
                                 }>{'|' + fragment}</div>);
                             }
                         });
                     } else {
                         lineStyle = {
-                            paddingLeft: '' + count * 5.6 + 'px',
+                            paddingLeft: '' + count * ssCharWidth + 'px',
                         };
 
                         return <div key={index} style={lineStyle}>{line}</div>;
@@ -184,7 +186,8 @@ export class SoundCheckApp extends Component {
                 key="result-window" 
                 className="box" 
                 result={this.state.result}
-                isLoading={this.state.isLoadingResult} />
+                isLoading={this.state.isLoadingResult}
+                ssTextRef={this.ssTextRef} />
             </div>
         );
     }

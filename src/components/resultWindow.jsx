@@ -67,7 +67,8 @@ class ResultWindow extends Component {
                         <Suspense fallback={() => <LoadWithShadow isLoading={true} />}>
                             <ResultSyntaxConsole
                             isLoading={isLoading}
-                            result={result} />
+                            result={result}
+                            ssTextRef={this.props.ssTextRef} />
                         </Suspense>
                     )
                 ) : (
