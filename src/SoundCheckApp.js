@@ -66,7 +66,10 @@ export class SoundCheckApp extends Component {
             });
 
             const ssDummyText = document.getElementById('ssDummyText');
-            this.ssCharacterWidth = ssDummyText.clientWidth / ssDummyText.innerText.length;
+            // console.log(ssDummyText.clientWidth, ssDummyText.)
+            this.ssCharacterWidth = ssDummyText.clientWidth / ssDummyText.innerHTML.length;
+
+            
             
             const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
                 let lineStyle = {};
