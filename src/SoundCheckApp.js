@@ -15,7 +15,8 @@ export class SoundCheckApp extends Component {
             'error': false,
             'soundBytes': []
         },
-        isLoadingResult: false
+        isLoadingResult: false,
+        ssCharWidth: 0
     };
 
     constructor() {
@@ -48,6 +49,12 @@ export class SoundCheckApp extends Component {
         link.download = fileName;
         link.click();
     };
+
+    componentDidMount() {
+        this.setState({
+            ssCharWidth = this.ssTextRef.current.clientWidth / this.ssTextRef.current.innerHTML.length
+        });
+    }
 
     handleRun = inputCode => {
         console.log('turning \'loading\' on...');
@@ -91,9 +98,6 @@ export class SoundCheckApp extends Component {
             //     return <div key={index} style={lineStyle}>{line}</div>;
             // });
 
-            console.log(this.ssTextRef);
-            const ssCharWidth = this.ssTextRef.current.clientWidth / this.ssTextRef.current.innerHTML;
-
             const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
                 let lineStyle = {};
                 let count = 0;
@@ -116,19 +120,19 @@ export class SoundCheckApp extends Component {
                             if(idx === 0) {
                                 console.log(count);
                                 return (<div key={idx} style={
-                                    { paddingLeft: '' + count * ssCharWidth + 'px' }
+                                    { paddingLeft: '' + count * this.state.ssCharWidth + 'px' }
                                 }>{fragment}</div>);
                             } else {
                                 const leftSpaces = indexOfArrow + count;
                                 console.log(leftSpaces);
                                 return (<div key={idx} style={
-                                    { paddingLeft: '' + leftSpaces * ssCharWidth + 'px' }
+                                    { paddingLeft: '' + leftSpaces * this.state.ssCharWidth + 'px' }
                                 }>{'|' + fragment}</div>);
                             }
                         });
                     } else {
                         lineStyle = {
-                            paddingLeft: '' + count * ssCharWidth + 'px',
+                            paddingLeft: '' + count * this.state.ssCharWidth + 'px',
                         };
 
                         return <div key={index} style={lineStyle}>{line}</div>;
@@ -171,10 +175,10 @@ export class SoundCheckApp extends Component {
         return (
             <div className='editor-console-container' onMouseMove={this.handleDragg}>
                 <CodeEditor 
-                key="code-editor"
-                onRun={this.handleRun}
-                onSave={this.handleSave}
-                className="box"
+                    key="code-editor"
+                    onRun={this.handleRun}
+                    onSave={this.handleSave}
+                    className="box"
                 />
 
                 <div className="handler" 
@@ -184,11 +188,12 @@ export class SoundCheckApp extends Component {
                 />
 
                 <ResultWindow 
-                key="result-window" 
-                className="box" 
-                result={this.state.result}
-                isLoading={this.state.isLoadingResult}
-                ssTextRef={this.ssTextRef} />
+                    key="result-window" 
+                    className="box" 
+                    result={this.state.result}
+                    isLoading={this.state.isLoadingResult}
+                    ssTextRef={this.ssTextRef} 
+                />
             </div>
         );
     }
