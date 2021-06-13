@@ -5,7 +5,9 @@ const ResultSyntaxConsole = ({isLoading, result, captureWidth}) => {
     const ssTextRef = useRef();
 
     const handleTextLoaded = (event) => {
-        captureWidth(event.target.clientWidth / event.target.value.length);
+        const charWidth = event.target.clientWidth / event.target.value.length;
+        console.log(charWidth);
+        captureWidth(charWidth);
     };
 
     return (

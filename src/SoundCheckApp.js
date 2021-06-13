@@ -35,9 +35,12 @@ export class SoundCheckApp extends Component {
         
     // };
 
-    captureSsCharWidth = width => this.setState({
-        ssCharWidth: width
-    });
+    captureSsCharWidth = width => {
+        console.log(width);
+        this.setState({
+            ssCharWidth: width
+        });
+    };
 
     handleSave = (inputCode, fileName) => {
         console.log('ssdfs');
@@ -116,13 +119,11 @@ export class SoundCheckApp extends Component {
 
                         return fragments.map((fragment, idx) => {
                             if(idx === 0) {
-                                console.log(count);
                                 return (<div key={idx} style={
                                     { paddingLeft: '' + count * this.state.ssCharWidth + 'px' }
                                 }>{fragment}</div>);
                             } else {
                                 const leftSpaces = indexOfArrow + count;
-                                console.log(leftSpaces);
                                 return (<div key={idx} style={
                                     { paddingLeft: '' + leftSpaces * this.state.ssCharWidth + 'px' }
                                 }>{'|' + fragment}</div>);
