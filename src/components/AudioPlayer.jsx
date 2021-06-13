@@ -79,6 +79,7 @@ export class AudioPlayer extends Component {
     };
 
     initSource = () => {
+        this.audioContext.resume();
         this.oscillator = this.audioContext.createOscillator();
         this.gainNode = this.audioContext.createGain();
 

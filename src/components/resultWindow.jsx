@@ -1,133 +1,89 @@
-import React, { useState, useRef } from 'react';
-import AudioPlayer from './AudioPlayer';
+import React, { Component, createRef, lazy, Suspense } from 'react';
+import ResultWindowTop from './ResultWindowTop';
+import ResultPlayerConsole from './ResultPlayerConsole';
+import ResultErrorConsole from './ResultErrorConsole';
+import LoadWithShadow from './LoadWithShadow';
 
-const ResultWindow = ({result, isLoading}) => {
-    const [selected, setSelected] = useState('scaledSyntax');
-    const [isPlayerOn, setIsPlayerOn] = useState(false);
+const ResultSyntaxConsole = lazy(() => import('./ResultSyntaxConsole'));
+// const LoadWithShadow = lazy(() => import('./LoadWithShadow'));
 
-    const scaledSyntaxRef = useRef();
-    const outputRef = useRef();
-
-    const activeStyle = {
-        backgroundColor: 'rgb(32, 31, 31)',
-        color: 'aliceblue'
+class ResultWindow extends Component {
+    state = {
+        selected: 'output',
+        isPlayerOn: false
     };
 
-    const errorStyle = {
-        color: 'red'
-    };
+    constructor(props) {
+        super(props);
+        this.scaledSyntaxRef = createRef();
+        this.outputRef = createRef();
+    }
 
-    const handleTabSelect = event => {
-        if(isPlayerOn) return;
+    handleTabSelect = event => {
+        if(this.state.isPlayerOn) return;
 
         console.log(event.target.id);
-        
-        if(event.target.id === 'scaled-syntax' && selected !== 'scaledSyntax') {
-            setSelected('scaledSyntax');
-            scaledSyntaxRef.current.style =  `
+        if(event.target.id === 'scaled-syntax' && this.state.selected !== 'scaledSyntax') {
+            this.setState({
+                selected: 'scaledSyntax'
+            });
+            this.scaledSyntaxRef.current.style =  `
                 background-color: rgb(32, 31, 31);
                 color: aliceblue;
             `;
-            outputRef.current.style = ``;
-        } else if(event.target.id === 'output' && selected !== 'output') {
-            setSelected('output');
-            outputRef.current.style = `
+            this.outputRef.current.style = ``;
+        } else if(event.target.id === 'output' && this.state.selected !== 'output') {
+            this.setState({
+                selected: 'output'
+            });
+            this.outputRef.current.style = `
                 background-color: rgb(32, 31, 31);
                 color: aliceblue;
             `;
-            scaledSyntaxRef.current.style = ``;
+            this.scaledSyntaxRef.current.style = ``;
         }
     };
 
-    return (
-        <div className="result-window" role="tablist">
-            <ul className="nav result-nav">
-                <li className="nav-item" key="scaled-syntax">
-                    <a id="scaled-syntax" 
-                    ref={scaledSyntaxRef}
-                    href="#scaled-syntax" 
-                    className="nav-link-custom nav-link active" 
-                    style={activeStyle}
-                    onClick={handleTabSelect}>
-                        Scaled Syntax
-                    </a>
-                </li>
-                <li className="nav-item" key="output">
-                    <a id="output" 
-                    ref={outputRef}
-                    href="#output" 
-                    className="nav-link-custom nav-link" 
-                    onClick={handleTabSelect}>
-                        Output
-                    </a>
-                </li>
-            </ul>
+    render() {
+        const { result, isLoading } = this.props;
+        // console.log(type(ResultSyntaxConsole));
+        return (
+            <div className="result-window" role="tablist">
+                <ResultWindowTop
+                onTabSelect={event => this.handleTabSelect(event)}
+                outputRef={this.outputRef}
+                scaledSyntaxRef={this.scaledSyntaxRef} 
+                />
 
-            {result['error'] === false ? (
-                selected === 'output' ? (
-                    <div 
-                    className="result-player-console" 
-                    key="result-player-console">
-                        {isLoading ? (
-                            <div className="loading">
-                                <div className="loader"></div>
-                            </div>
-                        ) : (
-                            <div className="loading" style={displayNone}>
-                                <div className="loader"></div>
-                            </div>
-                        )}
-
-                        <AudioPlayer 
-                        key="audio-player"
-                        notes={result['notes']}
-                        duration={result['duration']}
-                        volume={result['volume']}
-                        frequencies={result['frequencies']}
-                        setIsPlayerOn={setIsPlayerOn} 
-                        isLoading={isLoading}
-                        />
-
-                        <div className="result-console styled-scrollbar" key="result-output">
-                            <div key="output-content">{result['output']}</div>
-                        </div>
-                    </div>
-                ) : (
-                    <div className="result styled-scrollbar" key="result-syntax">
-                        {isLoading ? (
-                            <div className="loading">
-                                <div className="loader"></div>
-                            </div>
-                        ) : (
-                            <div className="loading" style={displayNone}>
-                                <div className="loader"></div>
-                            </div>
-                        )}
-
-                        {result['scaledSyntax']}
-                    </div>
-                )
-            ) : (
-                <div className="result-error-console" key="result-error" style={errorStyle}>
-                    {isLoading ? (
-                        <div className="loading">
-                            <div className="loader"></div>
-                        </div>
+                {result['error'] === false ? (
+                    this.state.selected === 'output' ? (
+                        <ResultPlayerConsole
+                        result={this.props.result}
+                        isLoading={this.props.isLoading}
+                        setIsPlayerOn={param => {
+                            this.setState({
+                                isPlayerOn: param
+                            });
+                        }} />
                     ) : (
-                        <div className="loading" style={displayNone}>
-                            <div className="loader"></div>
-                        </div>
-                    )}
-                    {selected === 'output' ? (result['output']) : result['scaledSyntax']}
-                </div>
-            )}       
-            
-        </div>
-    );
-};
+                        <Suspense fallback={<LoadWithShadow isLoading={true} />}>
 
-const displayNone = {
-    display: 'none'
-};
- 
+                                <ResultSyntaxConsole
+                                isLoading={isLoading}
+                                result={result}
+                                captureWidth={this.props.captureWidth} />
+                        </Suspense>
+                    )
+                ) : (
+                    <ResultErrorConsole
+                    selected={this.state.selected}
+                    isLoading={isLoading}
+                    result={result} />
+                )}       
+                
+            </div>
+        );
+    }
+}
+
 export default ResultWindow;

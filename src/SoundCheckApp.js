@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import CodeEditor from './components/codeEditor';
 import ResultWindow from './components/resultWindow';
 import './components/styles/editorStyle.css';
@@ -15,8 +15,14 @@ export class SoundCheckApp extends Component {
             'error': false,
             'soundBytes': []
         },
-        isLoadingResult: false
+        isLoadingResult: false,
+        ssCharWidth: 6.608695652173913
     };
+
+    constructor() {
+        super();
+        this.ssTextRef = createRef();
+    }
 
     // handleDragg = event => {
     //     if(!this.state.isHandlerDragging) {
@@ -28,6 +34,13 @@ export class SoundCheckApp extends Component {
 
         
     // };
+
+    captureSsCharWidth = width => {
+        console.log(width);
+        this.setState({
+            ssCharWidth: width
+        });
+    };
 
     handleSave = (inputCode, fileName) => {
         console.log('ssdfs');
@@ -55,24 +68,75 @@ export class SoundCheckApp extends Component {
         ).then(data => {
             return data.json();
         }).then(data => {
-            // console.log(data);
+            console.log(data); 
             this.setState({
                 isLoadingResult: false
             });
-            
-            const scaledSyntax = data['scaled-syntax'].split('\n').map((element, index) => {
-                let lineStyle = {};
-                if(element === '') {
-                    lineStyle = {padding: '5px 0'};
-                } else if(element.charAt(0) === '\t') {
-                    let count = 4;
-                    for(let i = 1; i < element.length && element.charAt(i) === '\t'; i++) {
-                        count += 4;
-                    }
-                    lineStyle = {paddingLeft: '' + count * 5.6 + 'px'};
-                }
 
-                return <div key={index} style={lineStyle}>{element}</div>;
+            // console.log('starting to fetch Dummy')
+
+            // const ssDummyText = document.getElementById('ssDummyText');
+            // console.log(ssDummyText.clientWidth, ssDummyText.innerHTML.length);
+            // this.ssCharacterWidth = ssDummyText.clientWidth / ssDummyText.innerHTML.length;
+
+            // console.log(this.ssCharacterWidth);
+            
+            // const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
+            //     let lineStyle = {};
+            //     if(line === '') {
+            //         lineStyle = {padding: '5px 0'};
+            //     } else if(line.charAt(0) === '\t') {
+            //         let count = 4;
+            //         for(let i = 1; i < line.length && line.charAt(i) === '\t'; i++) {
+            //             count += 4;
+            //         }
+                    
+            //         lineStyle = {
+            //             paddingLeft: '' + count * 5.6 + 'px',
+            //         };
+            //     }
+
+            //     return <div key={index} style={lineStyle}>{line}</div>;
+            // });
+
+            const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
+                let lineStyle = {};
+                let count = 0;
+
+                if(line === '') {
+                    lineStyle = {padding: '5px, 0'};
+                    return <div key={index} style={lineStyle}>{line}</div>;
+                } else {
+                    if(line.charAt(0) === '\t') {
+                        for(let i = 0; i < line.length && line.charAt(i) === '\t'; i++) {
+                            count += 4;
+                        }
+                    }
+
+                    if(line.includes('->')) {
+                        const indexOfArrow = line.indexOf('->');
+                        const fragments = line.split('|');
+
+                        return fragments.map((fragment, idx) => {
+                            if(idx === 0) {
+                                return (<div key={idx} style={
+                                    { paddingLeft: '' + count * this.state.ssCharWidth + 'px' }
+                                }>{fragment}</div>);
+                            } else {
+                                const leftSpaces = indexOfArrow + count;
+                                return (<div key={idx} style={
+                                    { paddingLeft: '' + leftSpaces * this.state.ssCharWidth + 'px' }
+                                }>{'|' + fragment}</div>);
+                            }
+                        });
+                    } else {
+                        lineStyle = {
+                            paddingLeft: '' + count * this.state.ssCharWidth + 'px',
+                        };
+
+                        return <div key={index} style={lineStyle}>{line}</div>;
+                    }
+                }
             });
 
             const output = data['output'].split('\n').map(element => {
@@ -110,10 +174,10 @@ export class SoundCheckApp extends Component {
         return (
             <div className='editor-console-container' onMouseMove={this.handleDragg}>
                 <CodeEditor 
-                key="code-editor"
-                onRun={this.handleRun}
-                onSave={this.handleSave}
-                className="box"
+                    key="code-editor"
+                    onRun={this.handleRun}
+                    onSave={this.handleSave}
+                    className="box"
                 />
 
                 <div className="handler" 
@@ -123,10 +187,12 @@ export class SoundCheckApp extends Component {
                 />
 
                 <ResultWindow 
-                key="result-window" 
-                className="box" 
-                result={this.state.result}
-                isLoading={this.state.isLoadingResult} />
+                    key="result-window" 
+                    className="box" 
+                    result={this.state.result}
+                    isLoading={this.state.isLoadingResult}
+                    captureWidth={this.captureSsCharWidth}
+                />
             </div>
         );
     }
