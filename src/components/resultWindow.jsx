@@ -68,7 +68,7 @@ class ResultWindow extends Component {
                             <ResultSyntaxConsole
                             isLoading={isLoading}
                             result={result}
-                            ssTextRef={this.props.ssTextRef} />
+                            captureWidth={this.props.captureWidth} />
                         </Suspense>
                     )
                 ) : (

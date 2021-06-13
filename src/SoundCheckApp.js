@@ -35,6 +35,10 @@ export class SoundCheckApp extends Component {
         
     // };
 
+    captureSsCharWidth = width => this.setState({
+        ssCharWidth: width
+    });
+
     handleSave = (inputCode, fileName) => {
         console.log('ssdfs');
         console.log(inputCode);
@@ -49,12 +53,6 @@ export class SoundCheckApp extends Component {
         link.download = fileName;
         link.click();
     };
-
-    componentDidMount() {
-        this.setState({
-            ssCharWidth = this.ssTextRef.current.clientWidth / this.ssTextRef.current.innerHTML.length
-        });
-    }
 
     handleRun = inputCode => {
         console.log('turning \'loading\' on...');
@@ -192,7 +190,7 @@ export class SoundCheckApp extends Component {
                     className="box" 
                     result={this.state.result}
                     isLoading={this.state.isLoadingResult}
-                    ssTextRef={this.ssTextRef} 
+                    captureWidth={this.captureSsCharWidth}
                 />
             </div>
         );
