@@ -2,9 +2,10 @@ import React, { Component, createRef, lazy, Suspense } from 'react';
 import ResultWindowTop from './ResultWindowTop';
 import ResultPlayerConsole from './ResultPlayerConsole';
 import ResultErrorConsole from './ResultErrorConsole';
+import LoadWithShadow from './LoadWithShadow';
 
 const ResultSyntaxConsole = lazy(() => import('./ResultSyntaxConsole'));
-const LoadWithShadow = lazy(() => import('./LoadWithShadow'));
+// const LoadWithShadow = lazy(() => import('./LoadWithShadow'));
 
 class ResultWindow extends Component {
     state = {
@@ -45,6 +46,7 @@ class ResultWindow extends Component {
 
     render() {
         const { result, isLoading } = this.props;
+        // console.log(type(ResultSyntaxConsole));
         return (
             <div className="result-window" role="tablist">
                 <ResultWindowTop
@@ -64,11 +66,12 @@ class ResultWindow extends Component {
                             });
                         }} />
                     ) : (
-                        <Suspense fallback={() => <LoadWithShadow isLoading={true} />}>
-                            <ResultSyntaxConsole
-                            isLoading={isLoading}
-                            result={result}
-                            captureWidth={this.props.captureWidth} />
+                        <Suspense fallback={<LoadWithShadow isLoading={true} />}>
+
+                                <ResultSyntaxConsole
+                                isLoading={isLoading}
+                                result={result}
+                                captureWidth={this.props.captureWidth} />
                         </Suspense>
                     )
                 ) : (
