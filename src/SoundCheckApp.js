@@ -16,7 +16,7 @@ export class SoundCheckApp extends Component {
             'soundBytes': []
         },
         isLoadingResult: false,
-        ssCharWidth: 0
+        ssCharWidth: 6.608695652173913
     };
 
     constructor() {
