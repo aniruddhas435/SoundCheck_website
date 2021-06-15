@@ -5,7 +5,6 @@ import ResultErrorConsole from './ResultErrorConsole';
 import LoadWithShadow from './LoadWithShadow';
 
 const ResultSyntaxConsole = lazy(() => import('./ResultSyntaxConsole'));
-// const LoadWithShadow = lazy(() => import('./LoadWithShadow'));
 
 class ResultWindow extends Component {
     state = {
@@ -46,7 +45,7 @@ class ResultWindow extends Component {
 
     render() {
         const { result, isLoading } = this.props;
-        // console.log(type(ResultSyntaxConsole));
+        
         return (
             <div className="result-window" role="tablist">
                 <ResultWindowTop
