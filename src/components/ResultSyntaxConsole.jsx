@@ -1,5 +1,6 @@
 import { React, useRef} from 'react';
 import LoadWithShadow from './LoadWithShadow';
+import RenderExecutedCFG from './RenderExecutedCFG';
 
 const ResultSyntaxConsole = ({isLoading, result, captureWidth}) => {
     const ssTextRef = useRef();
@@ -20,7 +21,7 @@ const ResultSyntaxConsole = ({isLoading, result, captureWidth}) => {
             style={{width: 'fit-content'}}
             onLoad={event => handleTextLoaded(event)}
             >
-                {result['scaledSyntax']}
+                <RenderExecutedCFG scaledSyntax={result['scaledSyntax']} />
             </div>
         </div>
     );
