@@ -21,7 +21,7 @@ const ResultSyntaxConsole = ({isLoading, result, captureWidth}) => {
             style={{width: 'fit-content'}}
             onLoad={event => handleTextLoaded(event)}
             >
-                <RenderExecutedCFG scaledSyntax={result['scaledSyntax']} />
+                <RenderExecutedCFG scaledSyntax={result['scaled-syntax']} />
             </div>
         </div>
     );
