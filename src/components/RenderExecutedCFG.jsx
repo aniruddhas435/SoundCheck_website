@@ -1,9 +1,20 @@
 import React from 'react';
 
-const RenderExecutedCFG = ({scaledSyntax}) => {
+const RenderExecutedCFG = () => {
+    const style = {
+        display: 'flex'
+    };
+
     return (
         <div>
-            {JSON.stringify(scaledSyntax)}
+            <div style={style}>
+                <span className="material-design">arrow_drop_down</span>
+                Declarations
+            </div>
+            <div style={style}>
+                <span className="material-design">arrow_drop_down</span>
+                Syntax
+            </div>
         </div>
     );
 }
