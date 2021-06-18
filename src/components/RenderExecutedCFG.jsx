@@ -3,7 +3,7 @@ import React from 'react';
 const RenderExecutedCFG = ({scaledSyntax}) => {
     return (
         <div>
-            {scaledSyntax}
+            {scaledSyntax.stringify()}
         </div>
     );
 }
