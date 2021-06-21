@@ -2,7 +2,7 @@ import {React} from 'react';
 import RenderSyntaxComponent from './RenderSyntaxComponent';
 
 const RenderExecutedCFG = ({scaledSyntax}) => {
-    if(typeof(scaledSyntax) === 'string' || scaledSyntax === null) {
+    if(scaledSyntax === '' || scaledSyntax === null) {
         return (
             <div></div>
         );
