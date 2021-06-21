@@ -11,8 +11,8 @@ export class SoundCheckApp extends Component {
         isHandlerDragging: false,
         editorWidth: '100px',
         result: {
-            'output': 'This is the result tab',
-            'scaledSyntax': 'This is the scaled syntax tab',
+            'output': '',
+            'scaledSyntax': '',
             'error': false,
             'soundBytes': [],
             'scaled-syntax': []

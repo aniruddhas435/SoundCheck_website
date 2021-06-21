@@ -2,6 +2,12 @@ import {React} from 'react';
 import RenderSyntaxComponent from './RenderSyntaxComponent';
 
 const RenderExecutedCFG = ({scaledSyntax}) => {
+    if(typeof(scaledSyntax) === 'string' || scaledSyntax === null) {
+        return (
+            <div></div>
+        );
+    }
+    
     return (
         <div>
             <RenderSyntaxComponent 
@@ -17,6 +23,6 @@ const RenderExecutedCFG = ({scaledSyntax}) => {
             />
         </div>
     );
-}
+};
  
 export default RenderExecutedCFG;

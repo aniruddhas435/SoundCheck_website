@@ -13,7 +13,7 @@ const RenderSyntaxComponent = ({content, header, leftSpaces}) => {
         paddingTop: '6.5px'
     };
 
-    if(type === 'string' || type === 'number' || content === null) {
+    if(type === 'string' || type === 'number') {
         const leafStyle = {
             padding: 0
         };
@@ -39,7 +39,7 @@ const RenderSyntaxComponent = ({content, header, leftSpaces}) => {
                 {contentStyled}
             </div>
         );
-    } else if(header === 'values' || header === 'empty') {
+    } else if(header === 'values' || header === 'empty' || content === null) {
         return (<div></div>);
     } else {
         const handleExpand = () => setIsOpen(!isOpen);
