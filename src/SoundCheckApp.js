@@ -15,7 +15,7 @@ export class SoundCheckApp extends Component {
             'scaledSyntax': '',
             'error': false,
             'soundBytes': [],
-            'scaled-syntax': []
+            'scaled-syntax': ''
             // 'scaled-syntax': [
             //     {
             //         "beatsPerCycle": 16,
