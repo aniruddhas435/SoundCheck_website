@@ -1,20 +1,20 @@
-import React from 'react';
+import {React} from 'react';
+import RenderSyntaxComponent from './RenderSyntaxComponent';
 
-const RenderExecutedCFG = () => {
-    const style = {
-        display: 'flex'
-    };
-
+const RenderExecutedCFG = ({scaledSyntax}) => {
     return (
         <div>
-            <div style={style}>
-                <span className="material-design">arrow_drop_down</span>
-                Declarations
-            </div>
-            <div style={style}>
-                <span className="material-design">arrow_drop_down</span>
-                Syntax
-            </div>
+            <RenderSyntaxComponent 
+                content={scaledSyntax[0]}
+                header='Declarations'
+                leftSpaces={0}
+            />
+
+            <RenderSyntaxComponent 
+                content={scaledSyntax[1]}
+                header='Syntax'
+                leftSpaces={0}
+            />
         </div>
     );
 }
