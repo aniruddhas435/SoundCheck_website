@@ -6,23 +6,23 @@ const RenderExecutedCFG = ({scaledSyntax}) => {
         return (
             <div></div>
         );
-    }
-    
-    return (
-        <div>
-            <RenderSyntaxComponent 
-                content={scaledSyntax[0]}
-                header='Declarations'
-                leftSpaces={0}
-            />
+    } else {
+        return (
+            <div>
+                <RenderSyntaxComponent 
+                    content={scaledSyntax[0]}
+                    header='Declarations'
+                    leftSpaces={0}
+                />
 
-            <RenderSyntaxComponent 
-                content={scaledSyntax[1]}
-                header='Syntax'
-                leftSpaces={0}
-            />
-        </div>
-    );
+                <RenderSyntaxComponent 
+                    content={scaledSyntax[1]}
+                    header='Syntax'
+                    leftSpaces={0}
+                />
+            </div>
+        );
+    }
 };
  
 export default RenderExecutedCFG;
