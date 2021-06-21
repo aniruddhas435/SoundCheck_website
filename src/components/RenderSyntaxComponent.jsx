@@ -13,7 +13,7 @@ const RenderSyntaxComponent = ({content, header, leftSpaces}) => {
         paddingTop: '6.5px'
     };
 
-    if(type === 'string' || type === 'number') {
+    if(type === 'string' || type === 'number' || content === null) {
         const leafStyle = {
             padding: 0
         };
