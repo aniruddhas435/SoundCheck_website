@@ -161,21 +161,6 @@
     background-color: rgb(32, 31, 31);
 }
 
-.result {
-    background-color: rgb(32, 31, 31);
-    color: rgb(203, 42, 224);
-    border: none;
-    font-family: monospace;
-    padding: 10px;
-    font-size: 12px;
-    line-height: 1.10rem;
-    overflow: auto;
-    height: 559px;
-    width: 100%;
-    padding: 20px;
-    background-color: rgb(32, 31, 31);
-}
-
 .loading {
     height: 559px;
     width: 100%;

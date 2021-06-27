@@ -3,6 +3,7 @@ import CodeEditor from './components/codeEditor';
 import ResultWindow from './components/resultWindow';
 import './components/styles/editorStyle.css';
 import './components/styles/playerStyles.css';
+import './components/styles/scaledSyntaxStyle.css';
 
 export class SoundCheckApp extends Component {
     state = {
@@ -10,10 +11,11 @@ export class SoundCheckApp extends Component {
         isHandlerDragging: false,
         editorWidth: '100px',
         result: {
-            'output': 'This is the result tab',
-            'scaledSyntax': 'This is the scaled syntax tab',
+            'output': '',
+            'scaledSyntax': '',
             'error': false,
-            'soundBytes': []
+            'soundBytes': [],
+            'scaled-syntax': ''
         },
         isLoadingResult: false,
         ssCharWidth: 6.608695652173913
@@ -73,71 +75,7 @@ export class SoundCheckApp extends Component {
                 isLoadingResult: false
             });
 
-            // console.log('starting to fetch Dummy')
-
-            // const ssDummyText = document.getElementById('ssDummyText');
-            // console.log(ssDummyText.clientWidth, ssDummyText.innerHTML.length);
-            // this.ssCharacterWidth = ssDummyText.clientWidth / ssDummyText.innerHTML.length;
-
-            // console.log(this.ssCharacterWidth);
-            
-            // const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
-            //     let lineStyle = {};
-            //     if(line === '') {
-            //         lineStyle = {padding: '5px 0'};
-            //     } else if(line.charAt(0) === '\t') {
-            //         let count = 4;
-            //         for(let i = 1; i < line.length && line.charAt(i) === '\t'; i++) {
-            //             count += 4;
-            //         }
-                    
-            //         lineStyle = {
-            //             paddingLeft: '' + count * 5.6 + 'px',
-            //         };
-            //     }
-
-            //     return <div key={index} style={lineStyle}>{line}</div>;
-            // });
-
-            const scaledSyntax = data['scaled-syntax'].split('\n').map((line, index) => {
-                let lineStyle = {};
-                let count = 0;
-
-                if(line === '') {
-                    lineStyle = {padding: '5px, 0'};
-                    return <div key={index} style={lineStyle}>{line}</div>;
-                } else {
-                    if(line.charAt(0) === '\t') {
-                        for(let i = 0; i < line.length && line.charAt(i) === '\t'; i++) {
-                            count += 4;
-                        }
-                    }
-
-                    if(line.includes('->')) {
-                        const indexOfArrow = line.indexOf('->');
-                        const fragments = line.split('|');
-
-                        return fragments.map((fragment, idx) => {
-                            if(idx === 0) {
-                                return (<div key={idx} style={
-                                    { paddingLeft: '' + count * this.state.ssCharWidth + 'px' }
-                                }>{fragment}</div>);
-                            } else {
-                                const leftSpaces = indexOfArrow + count;
-                                return (<div key={idx} style={
-                                    { paddingLeft: '' + leftSpaces * this.state.ssCharWidth + 'px' }
-                                }>{'|' + fragment}</div>);
-                            }
-                        });
-                    } else {
-                        lineStyle = {
-                            paddingLeft: '' + count * this.state.ssCharWidth + 'px',
-                        };
-
-                        return <div key={index} style={lineStyle}>{line}</div>;
-                    }
-                }
-            });
+            const scaledSyntax = data['scaledSyntax'];
 
             const output = data['output'].split('\n').map(element => {
                 return <div>{element}</div>;
@@ -147,7 +85,7 @@ export class SoundCheckApp extends Component {
 
             this.setState({
                 result: {
-                    'scaledSyntax': scaledSyntax,
+                    'scaled-syntax': scaledSyntax,
                     'output': output,
                     'error': data['error'],
                     'notes': data['notes'],
