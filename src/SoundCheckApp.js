@@ -112,8 +112,8 @@ export class SoundCheckApp extends Component {
         postSyntax(
             'https://soundcheck-getsequence.herokuapp.com/controller/postSyntax', 
             { 
-                syntax: inputCode, 
-                raagName: fileName
+                'syntax': inputCode, 
+                'raagName': fileName
             }
         ).then(data => data.json())
         .then(data => console.log(data));
