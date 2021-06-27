@@ -109,14 +109,16 @@ export class SoundCheckApp extends Component {
     };
 
     handleSaveToLibrary = (inputCode, fileName) => {
+        console.log(typeof(inputCode), typeof(fileName))
         postSyntax(
             'https://soundcheck-getsequence.herokuapp.com/controller/postSyntax', 
             { 
-                'syntax': inputCode, 
-                'raagName': fileName
+                "syntax": inputCode, 
+                "raagName": fileName
             }
         ).then(data => data.json())
-        .then(data => console.log(data));
+        .then(data => console.log(data))
+        .then(error => console.error(error));
     }
 
     render() {
@@ -149,6 +151,7 @@ export class SoundCheckApp extends Component {
 };
 
 async function postSyntax(url, body) {
+    console.log(body);
     const response = await fetch(url, {
         method: 'POST',
         headers: {
