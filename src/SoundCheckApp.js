@@ -155,7 +155,7 @@ async function postSyntax(url, body) {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json; charset=UTF-8',
+            
         },
         // redirect: 'follow',
         // referrerPolicy: 'no-referrer',
