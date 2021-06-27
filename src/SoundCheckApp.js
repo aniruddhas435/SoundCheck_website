@@ -151,7 +151,6 @@ export class SoundCheckApp extends Component {
 };
 
 async function postSyntax(url, body) {
-    console.log(body);
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -162,6 +161,8 @@ async function postSyntax(url, body) {
         // referrerPolicy: 'no-referrer',
         body: body
     });
+
+    console.log(response);
 
     return response;
 }
