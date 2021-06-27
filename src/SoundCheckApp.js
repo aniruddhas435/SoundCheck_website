@@ -66,7 +66,7 @@ export class SoundCheckApp extends Component {
         });
         postSyntax(
             'https://soundcheck-getsequence.herokuapp.com/controller/getSequence', 
-            { 'inputCode': inputCode }
+            inputCode
         ).then(data => {
             return data.json();
         }).then(data => {
@@ -108,6 +108,17 @@ export class SoundCheckApp extends Component {
         });
     };
 
+    handleSaveToLibrary = (inputCode, fileName) => {
+        postSyntax(
+            'https://soundcheck-getsequence.herokuapp.com/controller/postSyntax', 
+            { 
+                syntax: inputCode, 
+                raagName: fileName
+            }
+        ).then(data => data.json())
+        .then(data => console.log(data));
+    }
+
     render() {
         return (
             <div className='editor-console-container' onMouseMove={this.handleDragg}>
@@ -115,6 +126,7 @@ export class SoundCheckApp extends Component {
                     key="code-editor"
                     onRun={this.handleRun}
                     onSave={this.handleSave}
+                    onSaveToLibrary={this.handleSaveToLibrary}
                     className="box"
                 />
 
@@ -136,7 +148,7 @@ export class SoundCheckApp extends Component {
     }
 };
 
-async function postSyntax(url = '', data = {}) {
+async function postSyntax(url, body) {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -145,7 +157,7 @@ async function postSyntax(url = '', data = {}) {
         },
         // redirect: 'follow',
         // referrerPolicy: 'no-referrer',
-        body: data['inputCode']
+        body: body
     });
 
     return response;

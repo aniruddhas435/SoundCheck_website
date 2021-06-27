@@ -1,6 +1,9 @@
 import React, { useRef } from 'react';
 
-const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) => {
+const ToolBar = ({ onReset, onRun, onSave, onFileUpload, 
+                   fileName, onChange, onSaveToLibrary,
+                   onSelectFromLibrary }) => {
+                       
     const fileUpload = useRef();
 
     const onFileInput = () => {
@@ -10,6 +13,11 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) =
 
     const uploadClicked = () => {
         fileUpload.current.click();
+    };
+
+    const runButtonStyle = {
+        margin: '.5rem .5rem .5rem auto',
+        order: 0
     };
 
     return (
@@ -51,14 +59,24 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload, fileName, onChange }) =
             spellCheck="false"
             placeholder="filename.."/>
 
-            {/* <select name="raag" id="toolbar-select">
-                <option value="mkm_raag">miyan_ki_malhar.raag</option>
-                <option value="malkauns_raag">malkauns.raag</option>
-            </select> */}
+            <button 
+            className='editor-header-button m-2'
+            onClick={onSaveToLibrary}
+            title="Save to Library">
+                <span className="material-icons">library_add</span>
+            </button>
 
             <button 
-            className='editor-header-button m-2 float-right'
+            className='editor-header-button m-2'
+            onClick={onSelectFromLibrary}
+            title="Select from Library">
+                <span className="material-icons">library_books</span>
+            </button>
+
+            <button 
+            className='editor-header-button float-right'
             onClick={onRun}
+            style={runButtonStyle}
             title="Run">
                 <span className="material-icons">fast_forward</span>
             </button>

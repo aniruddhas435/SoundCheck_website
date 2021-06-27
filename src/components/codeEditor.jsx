@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ToolBar from './toolbar';
 import MonacoEditor from 'react-monaco-editor';
 
-const CodeEditor = ({onSave, onRun}) => {
+const CodeEditor = ({ onSave, onRun, onSaveToLibrary }) => {
     const options = {
         selectOnLineNumbers: true
     };
@@ -71,6 +71,15 @@ const CodeEditor = ({onSave, onRun}) => {
         setFileName(event.target.value);
     }
 
+    const handleSaveToLibrary = () => {
+        if(inputCode.length === 0) {
+            alert('Editor is empty');
+        } else {
+            console.log(inputCode);
+            onSaveToLibrary(inputCode, fileName);
+        }
+    }
+
     return (
         <div className='code-editor-container'>
             <ToolBar
@@ -80,6 +89,7 @@ const CodeEditor = ({onSave, onRun}) => {
             onFileUpload={handleUpload}
             fileName={fileName}
             onChange={handleFileNameChange}
+            onSaveToLibrary={handleSaveToLibrary}
             />
 
             <div 

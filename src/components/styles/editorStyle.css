@@ -50,7 +50,7 @@
     color: rgb(225, 226, 228);
     margin: .3em;
     padding: 10px 15px;
-    position: absolute;
+    position: relative;
     /* border: 3px solid rgb(32, 31, 31); */
     border-radius: 10px;
     border: none;
@@ -192,6 +192,7 @@
 
 .toolbar {
     background-color: rgb(65, 66, 66);
+    display: flex;
 }
 
 .result-nav {

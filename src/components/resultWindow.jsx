@@ -5,7 +5,6 @@ import ResultErrorConsole from './ResultErrorConsole';
 import LoadWithShadow from './LoadWithShadow';
 
 const ResultSyntaxConsole = lazy(() => import('./ResultSyntaxConsole'));
-// const LoadWithShadow = lazy(() => import('./LoadWithShadow'));
 
 class ResultWindow extends Component {
     state = {
