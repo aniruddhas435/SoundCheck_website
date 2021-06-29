@@ -109,13 +109,14 @@ export class SoundCheckApp extends Component {
     };
 
     handleSaveToLibrary = (inputCode, fileName) => {
+        const body = { 
+            "syntax": inputCode, 
+            "raagName": fileName
+        };
         console.log(typeof(inputCode), typeof(fileName))
         postSyntax(
             'https://soundcheck-getsequence.herokuapp.com/controller/postSyntax', 
-            { 
-                "syntax": inputCode, 
-                "raagName": fileName
-            }
+            body
         ).then(data => data.json())
         .then(data => console.log(data))
         .then(error => console.error(error));
