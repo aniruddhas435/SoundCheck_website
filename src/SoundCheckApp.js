@@ -155,10 +155,10 @@ async function postSyntax(url, body) {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json; charset=UTF-8',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
         },
-        body: body
+        body: JSON.stringify(body)
     });
 
     console.log(response);
