@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
+import ToolbarButton from './ToolbarButton';
 
 const ToolBar = ({ onReset, onRun, onSave, onFileUpload, 
                    fileName, onChange, onSaveToLibrary,
                    onSelectFromLibrary }) => {
-                       
+
     const fileUpload = useRef();
 
     const onFileInput = () => {
@@ -22,19 +23,17 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload,
 
     return (
         <div className="toolbar">
-            <button 
-            className='editor-header-button m-2'
+            <ToolbarButton 
+            className={'editor-header-button m-2'}
             onClick={onReset}
-            title="Reset">
-                <span className="material-icons">replay</span> 
-            </button>
+            title={'Reset'}
+            iconName={'replay'}/>
 
-            <button 
-            className='editor-header-button m-2'
+            <ToolbarButton 
+            className={'editor-header-button m-2'}
             onClick={onSave}
-            title="Save">
-                <span className="material-icons">download</span> 
-            </button>
+            title={'Save'}
+            iconName={'download'}/>
 
             <input 
             type="file" 
@@ -44,12 +43,11 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload,
             accept='.raag'
             hidden/>
 
-            <button 
-            className='editor-header-button m-2'
+            <ToolbarButton 
+            className={'editor-header-button m-2'}
             onClick={uploadClicked}
-            title="Upload">
-                <span className="material-icons">upload</span>
-            </button>
+            title={'Upload'}
+            iconName={'upload'}/>
 
             <input 
             type="text" 
@@ -59,19 +57,17 @@ const ToolBar = ({ onReset, onRun, onSave, onFileUpload,
             spellCheck="false"
             placeholder="filename.."/>
 
-            <button 
-            className='editor-header-button m-2'
+            <ToolbarButton 
+            className={'editor-header-button m-2'}
             onClick={onSaveToLibrary}
-            title="Save to Library">
-                <span className="material-icons">library_add</span>
-            </button>
+            title={'Save to Library'}
+            iconName={'library_add'}/>
 
-            <button 
-            className='editor-header-button m-2'
+            <ToolbarButton 
+            className={'editor-header-button m-2'}
             onClick={onSelectFromLibrary}
-            title="Select from Library">
-                <span className="material-icons">library_books</span>
-            </button>
+            title={'Select from Library'}
+            iconName={'library_books'}/>
 
             <button 
             className='editor-header-button float-right'

@@ -88,11 +88,10 @@
 .editor-header-button {
     padding: 4.67px 5px 0 5px;
     background: transparent;
-    border-radius: 5px;
+    border-radius: 25%;
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
-    border-radius: 25%;
     color: rgb(21, 159, 228);
 }
 

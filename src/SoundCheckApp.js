@@ -116,7 +116,7 @@ export class SoundCheckApp extends Component {
         console.log(typeof(inputCode), typeof(fileName))
         postSyntax(
             'https://soundcheck-getsequence.herokuapp.com/controller/postSyntax', 
-            body
+            JSON.stringify(body)
         ).then(data => data.json())
         .then(data => console.log(data))
         .then(error => console.error(error));
@@ -158,10 +158,8 @@ async function postSyntax(url, body) {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(body)
+        body: body
     });
-
-    console.log(response);
 
     return response;
 }
