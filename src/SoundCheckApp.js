@@ -123,6 +123,10 @@ export class SoundCheckApp extends Component {
     }
 
     render() {
+        console.log('CLIENT ID: ' + process.env.REACT_APP_CLIENT_ID);
+        console.log('CLIENT SECRET: ' + process.env.REACT_APP_CLIENT_SECRET);
+        console.log('REFRESH TOCKEN: ' + process.env.REACT_APP_REFRESH_TOCKEN);
+
         return (
             <div className='editor-console-container' onMouseMove={this.handleDragg}>
                 <CodeEditor 
