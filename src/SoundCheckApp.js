@@ -119,6 +119,8 @@ export class SoundCheckApp extends Component {
         const uploader = new GDriveUtils();
 
         const driveFileId = uploader.uploadFile(file, fileName);
+
+        console.log(driveFileId);
         // postSyntax(
         //     'https://soundcheck-getsequence.herokuapp.com/controller/postSyntax', 
         //     JSON.stringify({
