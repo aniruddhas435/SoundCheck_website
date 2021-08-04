@@ -4,7 +4,6 @@ import ResultWindow from './components/resultWindow';
 import './components/styles/editorStyle.css';
 import './components/styles/playerStyles.css';
 import './components/styles/scaledSyntaxStyle.css';
-import GDriveUtils from './utils/GDriveUtils';
 
 export class SoundCheckApp extends Component {
     state = {
@@ -110,26 +109,7 @@ export class SoundCheckApp extends Component {
     };
 
     handleSaveToLibrary = (inputCode, fileName) => {
-        const body = { 
-            "syntax": inputCode, 
-            "raagName": fileName
-        };
-        const file = new Blob([inputCode], {type: 'text/plain'});
-
-        const uploader = new GDriveUtils();
-
-        const driveFileId = uploader.uploadFile(file, fileName);
-
-        console.log(driveFileId);
-        // postSyntax(
-        //     'https://soundcheck-getsequence.herokuapp.com/controller/postSyntax', 
-        //     JSON.stringify({
-        //         raagName: fileName,
-        //         driveFileId: driveFileId
-        //     })
-        // ).then(data => data.json())
-        // .then(data => console.log(data))
-        // .then(error => console.error(error));
+        
     }
 
     render() {
@@ -139,6 +119,8 @@ export class SoundCheckApp extends Component {
 
         return (
             <div className='editor-console-container' onMouseMove={this.handleDragg}>
+                
+
                 <CodeEditor 
                     key="code-editor"
                     onRun={this.handleRun}

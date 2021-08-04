@@ -7,11 +7,7 @@ const LoadWithShadow = ({isLoading}) => {
                 <div className="loading">
                     <div className="loader"></div>
                 </div>
-            ) : (
-                <div className="loading" style={displayNone}>
-                    <div className="loader"></div>
-                </div>
-            )}
+            ) : null}
         </div>
     );
 };
