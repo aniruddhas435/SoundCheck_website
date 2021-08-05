@@ -11,9 +11,5 @@ const LoadWithShadow = ({isLoading}) => {
         </div>
     );
 };
-
-const displayNone = {
-    display: 'none'
-};
  
 export default LoadWithShadow;
