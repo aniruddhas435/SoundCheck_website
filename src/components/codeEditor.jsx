@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ToolBar from './toolbar';
-import MonacoEditor from 'react-monaco-editor';
+import CustomMonacoEditor from './CustomMonacoEditor';
 
 const CodeEditor = ({ onSave, onRun, onSaveToLibrary }) => {
     const options = {
@@ -96,7 +96,7 @@ const CodeEditor = ({ onSave, onRun, onSaveToLibrary }) => {
             className="code-input"
             onDragOver={handleDragOver}
             onDrop={handleDrop}>
-                <MonacoEditor 
+                <CustomMonacoEditor 
                     width="100%"
                     height="100%"
                     theme="vs-dark"

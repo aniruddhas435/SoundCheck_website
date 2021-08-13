@@ -4,6 +4,7 @@ import ResultWindow from './components/resultWindow';
 import './components/styles/editorStyle.css';
 import './components/styles/playerStyles.css';
 import './components/styles/scaledSyntaxStyle.css';
+import './components/styles/modalStyle.css';
 
 export class SoundCheckApp extends Component {
     state = {
@@ -18,7 +19,8 @@ export class SoundCheckApp extends Component {
             'scaled-syntax': ''
         },
         isLoadingResult: false,
-        ssCharWidth: 6.608695652173913
+        ssCharWidth: 6.608695652173913,
+        showModal: false
     };
 
     constructor() {
@@ -132,7 +134,7 @@ export class SoundCheckApp extends Component {
                 <div className="handler" 
                     key="handler"
                     onMouseDown={() => this.setState({isHandlerDragging: true})}
-                    onMouseUp= {() => this.setState({isHandlerDragging: false})}
+                    onMouseUp={() => this.setState({isHandlerDragging: false})}
                 />
 
                 <ResultWindow 

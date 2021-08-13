@@ -64,14 +64,6 @@ const RenderSyntaxComponent = ({content, header, leftSpaces}) => {
                     <div style={textStyle}>{header}</div>
                 </div>
 
-                {/* {isOpen ? content.forEach(([key, value]) => (
-                    <RenderSyntaxComponent
-                        content={value}
-                        header={key}
-                        leftSpaces={leftSpaces + 1}
-                    />
-                )) : (<div></div>)} */}
-
                 {isOpen ? contentStyled : (<div></div>)}
             </div>
         );
