@@ -5,6 +5,7 @@ import './components/styles/editorStyle.css';
 import './components/styles/playerStyles.css';
 import './components/styles/scaledSyntaxStyle.css';
 import './components/styles/modalStyle.css';
+import ModalFallBack from './components/ModalFallBack';
 
 export class SoundCheckApp extends Component {
     state = {
@@ -111,17 +112,23 @@ export class SoundCheckApp extends Component {
     };
 
     handleSaveToLibrary = (inputCode, fileName) => {
-        
-    }
+        this.setState({
+            showModal: true
+        });
+    };
+
+    handleCloseModal = event => {
+        this.setState({
+            showModal: false
+        });
+    };
 
     render() {
-        console.log(process.env);
-        console.log('CLIENT SECRET: ' + process.env.REACT_APP_CLIENT_SECRET);
-        console.log('REFRESH TOCKEN: ' + process.env.REACT_APP_REFRESH_TOCKEN);
-
         return (
             <div className='editor-console-container' onMouseMove={this.handleDragg}>
-                
+                <ModalFallBack 
+                isVisible={this.state.showModal}
+                vanishModal={() => this.setState({ showModal: false })} />
 
                 <CodeEditor 
                     key="code-editor"

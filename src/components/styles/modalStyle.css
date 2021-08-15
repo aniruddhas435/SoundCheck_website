@@ -1,4 +1,75 @@
 .modal-popup-background {
     height: 100vh;
     width: 100%;
+    background-color: rgba(26, 25, 25, 0.5);
+    position: fixed;
+    z-index: 2;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-addfile-form {
+    position: relative;
+    top: 7em;
+    left: auto;
+    background-color: rgb(92, 90, 114);
+    border: none;
+    border-radius: 20px;
+    width: fit-content;
+    height: fit-content;
+    opacity: 1;
+    padding: 20px;
+}
+
+.input-field {
+    color: rgb(225, 226, 228);
+    margin: .3em;
+    padding: 5px;
+    margin-top: 20px;
+    position: relative;
+    /* border: 3px solid rgb(32, 31, 31); */
+    border-bottom: 1px solid rgb(223, 219, 219);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: rgb(92, 90, 114);
+    width: 28em;
+    font-size: 14.44px;
+    font-family: monospace;
+}
+
+.input-field:focus {
+    outline: none;
+}
+
+.input-field::-webkit-input-placeholder {
+    color: rgb(177, 179, 180);
+}
+
+.form-buttons-section {
+    padding: 30px 10px 5px 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-button {
+    margin: 0 1em;
+    padding: 5px;
+    width: 5em;
+    height: 2.5em;
+    background-color: rgb(7, 167, 68);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    color: rgb(255, 255, 255);
+}
+
+.form-button:hover {
+    background-color: rgb(16, 143, 65);
+}
+
+.form-button:active {
+    background-color: rgb(15, 90, 15);
 }

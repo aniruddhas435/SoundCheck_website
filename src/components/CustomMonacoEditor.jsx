@@ -1,10 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 
 export class CustomMonacoEditor extends Component {
     editor = null;
 
 	handleEditorDidMount = editor => this.editor = editor;
+
+	handleResize = () => this.editor.layout();
+
+	componentDidMount() {
+		window.addEventListener('resize', this.handleResize);
+	}
 
 	render() {
 		return (
@@ -13,12 +19,6 @@ export class CustomMonacoEditor extends Component {
 				editorDidMount={this.handleEditorDidMount}
 			/>
 		);
-	}
-
-	handleResize = () => this.editor.layout();
-
-	componentDidMount() {
-		window.addEventListener('resize', this.handleResize);
 	}
 }
 
