@@ -18,7 +18,8 @@ export class ModalFallBack extends Component {
                 id='modal-fallback'
                 onClick={this.handleClose}>
                     <AddToLibraryForm
-                    vanishModal={this.props.vanishModal} />
+                    vanishModal={this.props.vanishModal}
+                    handleSaveToLibrary={this.props.handleSaveToLibrary} />
                 </div>
             ) : (
                 null

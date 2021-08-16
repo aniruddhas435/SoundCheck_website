@@ -13,7 +13,7 @@
     position: relative;
     top: 7em;
     left: auto;
-    background-color: rgb(92, 90, 114);
+    background-color: rgb(76, 75, 95);
     border: none;
     border-radius: 20px;
     width: fit-content;
@@ -33,7 +33,7 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    background-color: rgb(92, 90, 114);
+    background-color: rgb(76, 75, 95);
     width: 28em;
     font-size: 14.44px;
     font-family: monospace;
@@ -56,20 +56,21 @@
 .form-button {
     margin: 0 1em;
     padding: 5px;
-    width: 5em;
+    width: 7em;
     height: 2.5em;
-    background-color: rgb(7, 167, 68);
-    border-radius: 10px;
+    background-color: rgb(122, 144, 192);
+    border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
-    color: rgb(255, 255, 255);
+    color: aliceblue;
 }
 
 .form-button:hover {
-    background-color: rgb(16, 143, 65);
+    background-color: rgb(27, 123, 168);
 }
 
 .form-button:active {
-    background-color: rgb(15, 90, 15);
+    background-color: rgb(79, 117, 206);
+    border: 2px solid white;
 }

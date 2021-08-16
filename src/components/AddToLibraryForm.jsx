@@ -6,6 +6,19 @@ export class AddToLibraryForm extends Component {
         raagName: ''
     };
 
+    addFileToLibrary = () => {
+        if(!this.state.fileName.endsWith('.raag')) {
+            alert('File Name has to end with .raag');
+        } else if(this.state.raagName === '') {
+            alert('Raag Name cannot remain empty');
+        } else {
+            this.props.handleSaveToLibrary(
+                this.state.fileName,
+                this.state.raagName
+            );
+        }
+    }
+
     render() {
         return (
             <div className='modal-addfile-form' id='add-form'>
@@ -29,7 +42,8 @@ export class AddToLibraryForm extends Component {
 
                 <div className='form-buttons-section'>
                     <button 
-                    className='form-button'>
+                    className='form-button'
+                    onClick={() => this.addFileToLibrary()}>
                         Add
                     </button>
 
@@ -40,7 +54,7 @@ export class AddToLibraryForm extends Component {
                     </button>
                 </div>
             </div>
-        )
+        );
     }
 };
 

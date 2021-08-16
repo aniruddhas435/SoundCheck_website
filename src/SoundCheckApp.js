@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import CodeEditor from './components/codeEditor';
 import ResultWindow from './components/resultWindow';
 import './components/styles/editorStyle.css';
@@ -20,14 +20,8 @@ export class SoundCheckApp extends Component {
             'scaled-syntax': ''
         },
         isLoadingResult: false,
-        ssCharWidth: 6.608695652173913,
         showModal: false
     };
-
-    constructor() {
-        super();
-        this.ssTextRef = createRef();
-    }
 
     // handleDragg = event => {
     //     if(!this.state.isHandlerDragging) {
@@ -111,10 +105,24 @@ export class SoundCheckApp extends Component {
         });
     };
 
-    handleSaveToLibrary = (inputCode, fileName) => {
+    showSaveToLibraryForm = (inputCode, fileName) => {
         this.setState({
-            showModal: true
+            showModal: true,
+            inputCode: inputCode
         });
+    };
+
+    handleSaveToLibrary = (fileName, raagName) => {
+        const body = {
+            'syntax': {
+                'raagName': raagName,
+                'fileName': fileName,
+                'authorName': 'aniruddha.sarkar'
+            },
+            'fileContent': this.state.inputCode
+        }
+
+        console.log(JSON.stringify(body));
     };
 
     handleCloseModal = event => {
@@ -128,13 +136,14 @@ export class SoundCheckApp extends Component {
             <div className='editor-console-container' onMouseMove={this.handleDragg}>
                 <ModalFallBack 
                 isVisible={this.state.showModal}
+                handleSaveToLibrary={this.handleSaveToLibrary}
                 vanishModal={() => this.setState({ showModal: false })} />
 
                 <CodeEditor 
                     key="code-editor"
                     onRun={this.handleRun}
                     onSave={this.handleSave}
-                    onSaveToLibrary={this.handleSaveToLibrary}
+                    onSaveToLibrary={this.showSaveToLibraryForm}
                     className="box"
                 />
 
