@@ -127,7 +127,7 @@ export class SoundCheckApp extends Component {
             'https://soundcheck-getsequence.herokuapp.com/controller/postSyntax',
             JSON.stringify(body)
         ).then(res => {
-            if(res.status === 200) {
+            if(res.status === 201) {
                 this.setState({
                     showModal: false,
                     inputCode: ''
