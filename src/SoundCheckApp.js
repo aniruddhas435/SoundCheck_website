@@ -61,7 +61,7 @@ export class SoundCheckApp extends Component {
         this.setState({
             isLoadingResult: true
         });
-        postSyntax(
+        postFetch(
             'https://soundcheck-getsequence.herokuapp.com/controller/getSequence', 
             inputCode
         ).then(data => {
@@ -123,11 +123,23 @@ export class SoundCheckApp extends Component {
         }
 
         console.log(JSON.stringify(body));
+        postFetch(
+            'https://soundcheck-getsequence.herokuapp.com/controller/postSyntax',
+            JSON.stringify(body)
+        ).then(res => {
+            if(res.status === 200) {
+                this.setState({
+                    showModal: false,
+                    inputCode: ''
+                });
+            }
+        }).catch(error => console.log(error));
     };
 
     handleCloseModal = event => {
         this.setState({
-            showModal: false
+            showModal: false,
+            inputCode: ''
         });
     };
 
@@ -165,7 +177,7 @@ export class SoundCheckApp extends Component {
     }
 };
 
-async function postSyntax(url, body) {
+async function postFetch(url, body) {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
