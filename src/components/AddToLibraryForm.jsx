@@ -43,7 +43,8 @@ export class AddToLibraryForm extends Component {
                 <div className='form-buttons-section'>
                     <button 
                     className='form-button'
-                    onClick={() => this.addFileToLibrary()}>
+                    onClick={() => this.addFileToLibrary()}
+                    disabled={this.props.isPosting}>
                         Add
                     </button>
 

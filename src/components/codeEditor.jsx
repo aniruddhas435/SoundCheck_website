@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ToolBar from './toolbar';
 import CustomMonacoEditor from './CustomMonacoEditor';
 
-const CodeEditor = ({ onSave, onRun, onSaveToLibrary }) => {
+const CodeEditor = ({ onSave, onRun, onSaveToLibrary, onSearchLibrary }) => {
     const options = {
         selectOnLineNumbers: true
     };
@@ -90,6 +90,7 @@ const CodeEditor = ({ onSave, onRun, onSaveToLibrary }) => {
             fileName={fileName}
             onChange={handleFileNameChange}
             onSaveToLibrary={handleSaveToLibrary}
+            onSelectFromLibrary={onSearchLibrary}
             />
 
             <div 

@@ -20,7 +20,9 @@ export class SoundCheckApp extends Component {
             'scaled-syntax': ''
         },
         isLoadingResult: false,
-        showModal: false
+        showModal: false,
+        isPostingToLibrary: false,
+        popupContent: ''
     };
 
     // handleDragg = event => {
@@ -108,32 +110,42 @@ export class SoundCheckApp extends Component {
     showSaveToLibraryForm = (inputCode, fileName) => {
         this.setState({
             showModal: true,
-            inputCode: inputCode
+            inputCode: inputCode,
+            popupContent: 'form-popup'
+        });
+    };
+
+    showSearchWindow = () => {
+        console.log('from showSearchWindow()');
+        this.setState({
+            showModal: true,
+            popupContent: 'search-window-popup'
         });
     };
 
     handleSaveToLibrary = (fileName, raagName) => {
-        const body = {
-            'syntax': {
-                'raagName': raagName,
-                'fileName': fileName,
-                'authorName': 'aniruddha.sarkar'
-            },
-            'fileContent': this.state.inputCode
-        }
-
-        console.log(JSON.stringify(body));
+        this.setState({ isPostingToLibrary: true })
         postFetch(
             'https://soundcheck-getsequence.herokuapp.com/controller/postSyntax',
-            JSON.stringify(body)
+            JSON.stringify({
+                'syntax': {
+                    'raagName': raagName,
+                    'fileName': fileName,
+                    'authorName': 'aniruddha.sarkar'
+                },
+                'fileContent': this.state.inputCode
+            })
         ).then(res => {
             if(res.status === 201) {
                 this.setState({
                     showModal: false,
-                    inputCode: ''
+                    inputCode: '',
+                    isPostingToLibrary: false
                 });
             }
-        }).catch(error => console.log(error));
+        }).catch(error => {
+            console.log(error);
+        });
     };
 
     handleCloseModal = event => {
@@ -149,13 +161,16 @@ export class SoundCheckApp extends Component {
                 <ModalFallBack 
                 isVisible={this.state.showModal}
                 handleSaveToLibrary={this.handleSaveToLibrary}
-                vanishModal={() => this.setState({ showModal: false })} />
+                isPosting={this.state.isPostingToLibrary}
+                content={this.state.popupContent}
+                vanishModal={this.handleCloseModal} />
 
                 <CodeEditor 
                     key="code-editor"
                     onRun={this.handleRun}
                     onSave={this.handleSave}
                     onSaveToLibrary={this.showSaveToLibraryForm}
+                    onSearchLibrary={this.showSearchWindow}
                     className="box"
                 />
 

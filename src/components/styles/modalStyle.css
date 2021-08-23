@@ -1,3 +1,5 @@
+/* modal backgrouund style */
+
 .modal-popup-background {
     height: 100vh;
     width: 100%;
@@ -8,6 +10,8 @@
     display: flex;
     justify-content: center;
 }
+
+/* modal add-form style */
 
 .modal-addfile-form {
     position: relative;
@@ -73,4 +77,65 @@
 .form-button:active {
     background-color: rgb(79, 117, 255);
     border: 2px solid white;
+}
+
+.form-button:disabled {
+    background-color: rgb(163, 166, 168);
+}
+
+/* modal search-window style */
+
+.modal-search-window-form {
+    position: relative;
+    top: 3em;
+    left: auto;
+    background-color: rgb(76, 75, 95);
+    border: none;
+    border-radius: 20px;
+    width: 50em;
+    height: 30em;
+    opacity: 1;
+    padding: 20px;
+}
+
+.search-field {
+    color: rgb(225, 226, 228);
+    margin: 1em;
+    padding: 5px;
+    margin-top: 20px;
+    position: relative;
+    border-bottom: 1px solid rgb(223, 219, 219);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: rgb(76, 75, 95);
+    width: 12em;
+    font-size: 14.44px;
+    font-family: monospace;
+}
+
+.search-field:focus {
+    outline: none;
+}
+
+.search-button {
+    background-color: rgb(211, 43, 226);
+}
+
+#search-form {
+    margin-bottom: .8em;
+}
+
+.fileList {
+    width: 100%;
+}
+
+.fileList th {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.fileList thead {
+    border-bottom: 0.5px solid aliceblue;
+    color: aliceblue;
 }

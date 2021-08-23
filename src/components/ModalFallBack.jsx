@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import AddToLibraryForm from './AddToLibraryForm';
+import React, { Component, lazy, Suspense } from 'react';
+
+const AddToLibraryForm = lazy(() => import('./AddToLibraryForm'));
+const SearchLibraryWindow = lazy(() => import('./SearchLibraryWindow'));
 
 export class ModalFallBack extends Component {
 
@@ -17,9 +19,16 @@ export class ModalFallBack extends Component {
                 className='modal-popup-background' 
                 id='modal-fallback'
                 onClick={this.handleClose}>
-                    <AddToLibraryForm
-                    vanishModal={this.props.vanishModal}
-                    handleSaveToLibrary={this.props.handleSaveToLibrary} />
+                    <Suspense fallback={<div></div>}>
+                        {this.props.content === 'form-popup' ? (
+                            <AddToLibraryForm
+                            vanishModal={this.props.vanishModal}
+                            isPosting={this.props.isPosting}
+                            handleSaveToLibrary={this.props.handleSaveToLibrary} />                           
+                        ) : (
+                            <SearchLibraryWindow />
+                        )}
+                    </Suspense>
                 </div>
             ) : (
                 null
