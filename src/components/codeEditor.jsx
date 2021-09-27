@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import ToolBar from './toolbar';
 import CustomMonacoEditor from './CustomMonacoEditor';
 
-const CodeEditor = ({ onSave, onRun, onSaveToLibrary, onSearchLibrary }) => {
+const CodeEditor = ({ onSave, onRun, onSaveToLibrary, onSearchLibrary,
+                      inputCode, setInputCode }) => {
     const options = {
         selectOnLineNumbers: true
     };
 
-    const [inputCode, setInputCode] = useState('');
+    // const [inputCode, setInputCode] = useState('');
     const [fileName, setFileName] = useState('your.raag');
 
     const handleRun = () => {

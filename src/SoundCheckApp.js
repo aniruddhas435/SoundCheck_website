@@ -148,6 +148,12 @@ export class SoundCheckApp extends Component {
         });
     };
 
+    setInputCode = (inputCode) => {
+        this.setState({
+            inputCode: inputCode
+        });
+    };
+
     handleCloseModal = () => {
         this.setState({
             showModal: false,
@@ -167,12 +173,13 @@ export class SoundCheckApp extends Component {
             })
         ).then(data => data.json())
         .then(data => {
-            console.log(data);
+            console.log(data['inputCode']);
             this.setState({
-                inputCode: data
+                inputCode: data['inputCode']
             });
+            console.log(this.state.inputCode);
         }).then(err => {
-            console.log(err);
+            // console.log(err);
         });
     };
 
@@ -194,6 +201,8 @@ export class SoundCheckApp extends Component {
                     onSaveToLibrary={this.showSaveToLibraryForm}
                     onSearchLibrary={this.showSearchWindow}
                     className="box"
+                    inputCode={this.state.inputCode}
+                    setInputCode={this.setInputCode}
                 />
 
                 <div className="handler" 
