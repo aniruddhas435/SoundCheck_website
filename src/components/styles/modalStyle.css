@@ -93,7 +93,7 @@
     border: none;
     border-radius: 20px;
     width: 50em;
-    height: 30em;
+    height: 31em;
     opacity: 1;
     padding: 20px;
 }
@@ -119,23 +119,92 @@
 }
 
 .search-button {
-    background-color: rgb(211, 43, 226);
+    background-color: rgb(145, 0, 158);
 }
 
 #search-form {
     margin-bottom: .8em;
 }
 
-.fileList {
+.file-list {
     width: 100%;
 }
 
-.fileList th {
-    text-align: center;
-    padding-bottom: 10px;
+.file-list th, .file-list td {
+    flex-basis:100%;
+    flex-grow:2;
+    display: block;
+    padding: 1rem;
+    text-align:left;
 }
 
-.fileList thead {
+.file-list th {
+    color: antiquewhite;
+}
+
+.hover-shadow {
+    color: rgb(197, 214, 194);
+}
+
+.file-list thead {
     border-bottom: 0.5px solid aliceblue;
+    color: rgb(228, 236, 245);
+}
+
+.file-list tr {
+    display: flex;
+}
+
+.hover-shadow:nth-child(even) {
+    background-color: rgb(86, 82, 112);
+}
+
+.hover-shadow:hover:nth-child(even), .hover-shadow:hover {
+    background-color: rgb(155, 154, 196);
     color: aliceblue;
+    cursor: pointer;
+}
+
+.file-list tr:last-child {
+    border-bottom: none;
+}
+
+.file-list tbody {
+    overflow-y: scroll;
+    height: 19em;
+    display: block;
+}
+
+.file-list tbody::-webkit-scrollbar {
+    display: none;
+}
+
+.file-list tbody::-webkit-scrollbar {
+    width: 10px;
+}
+
+.page-status {
+    display: flex;
+    justify-content: center;
+    color: aliceblue;
+    font-size: 0.8em;
+}
+
+.page-status-comp {
+    padding: 3px 5px;
+}
+
+.page-no {
+    background-color: rgb(76, 75, 95);
+    color: aliceblue;
+    height: 1em;
+    width: 1.5em;
+    border: none;
+    border-radius: 2.5px;
+    margin-top: 4px;
+    padding: 3px;
+}
+
+.page-no:focus {
+    outline: none;
 }

@@ -26,7 +26,8 @@ export class ModalFallBack extends Component {
                             isPosting={this.props.isPosting}
                             handleSaveToLibrary={this.props.handleSaveToLibrary} />                           
                         ) : (
-                            <SearchLibraryWindow />
+                            <SearchLibraryWindow
+                            loadSyntax={this.props.loadSyntax} />
                         )}
                     </Suspense>
                 </div>

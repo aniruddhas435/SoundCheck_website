@@ -148,10 +148,31 @@ export class SoundCheckApp extends Component {
         });
     };
 
-    handleCloseModal = event => {
+    handleCloseModal = () => {
         this.setState({
             showModal: false,
             inputCode: ''
+        });
+    };
+
+    loadSyntax = (fileName, raagName, authorName) => {
+        this.handleCloseModal();
+        console.log(raagName, fileName, authorName);
+        postFetch(
+            'https://soundcheck-getsequence.herokuapp.com/controller/getSyntax',
+            JSON.stringify({
+                "raagName": raagName,
+                "fileName": fileName,
+                "authorName": authorName
+            })
+        ).then(data => data.json())
+        .then(data => {
+            console.log(data);
+            this.setState({
+                inputCode: data
+            });
+        }).then(err => {
+            console.log(err);
         });
     };
 
@@ -163,7 +184,8 @@ export class SoundCheckApp extends Component {
                 handleSaveToLibrary={this.handleSaveToLibrary}
                 isPosting={this.state.isPostingToLibrary}
                 content={this.state.popupContent}
-                vanishModal={this.handleCloseModal} />
+                vanishModal={this.handleCloseModal}
+                loadSyntax={this.loadSyntax} />
 
                 <CodeEditor 
                     key="code-editor"
