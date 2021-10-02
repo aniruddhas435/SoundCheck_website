@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LoadWithShadow from './LoadWithShadow';
 
 export class SearchLibraryWindow extends Component {
     state = {
@@ -36,6 +37,8 @@ export class SearchLibraryWindow extends Component {
             pageSize: 7
         };
 
+        this.setState({isLoading: true})
+
         postFetch(
             "https://soundcheck-getsequence.herokuapp.com/controller/getSyntaxListForQuery",
             JSON.stringify(body)
@@ -44,7 +47,9 @@ export class SearchLibraryWindow extends Component {
             // console.log(data['pages']);
             console.log(data['page']);
             this.setState({
+                isLoading: false,
                 listOfFiles: data['page'],
+                pageNo: 1,
                 pages: data['pages']
             });
         }).then(err => console.log(err));
@@ -96,6 +101,9 @@ export class SearchLibraryWindow extends Component {
                             </tr>
                         </thead>
                         <tbody>
+                            <LoadWithShadow 
+                            isLoading={this.state.isLoading} 
+                            loadingClassName='loading-file-list' />
                             {this.state.listOfFiles.map(record => (
                                 <tr 
                                 className='hover-shadow'

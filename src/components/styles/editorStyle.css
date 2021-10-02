@@ -174,7 +174,7 @@ body::-webkit-scrollbar {
 }
 
 .loading {
-    height: var(--editor-height);
+    height: 100%;
     width: 100%;
     background-color: rgba(26, 25, 25, 0.5);
     position: fixed;
@@ -184,7 +184,7 @@ body::-webkit-scrollbar {
 
 .loading div {
     position: relative;
-    top: 40%;
+    top: 35%;
     left: 22%;
 }
 

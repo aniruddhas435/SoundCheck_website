@@ -2,13 +2,14 @@ import React from 'react';
 import AudioPlayer from './AudioPlayer';
 import LoadWithShadow from './LoadWithShadow';
 
-const ResultPlayerConsole = ({result, isLoading, setIsPlayerOn}) => {
+const ResultPlayerConsole = ({result, isLoading, loadingClassName, setIsPlayerOn}) => {
     return (
         <div 
         className="result-player-console" 
         key="result-player-console">
             <LoadWithShadow
             isLoading={isLoading}
+            loadingClassName={loadingClassName}
             />
 
             <AudioPlayer 

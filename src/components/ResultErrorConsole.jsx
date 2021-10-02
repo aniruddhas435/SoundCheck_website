@@ -1,11 +1,12 @@
 import React from 'react';
 import LoadWithShadow from './LoadWithShadow';
 
-const ResultErrorConsole = ({selected, isLoading, result}) => {
+const ResultErrorConsole = ({selected, isLoading, loadingClassName, result}) => {
     return (
         <div className="result-error-console" key="result-error" style={errorStyle}>
             <LoadWithShadow
             isLoading={isLoading}
+            loadingClassName={loadingClassName}
             />
             {selected === 'output' ? (
                 result['output']

@@ -59,15 +59,17 @@ class ResultWindow extends Component {
                         <ResultPlayerConsole
                         result={this.props.result}
                         isLoading={this.props.isLoading}
+                        loadingClassName='loading'
                         setIsPlayerOn={param => {
                             this.setState({
                                 isPlayerOn: param
                             });
                         }} />
                     ) : (
-                        <Suspense fallback={<LoadWithShadow isLoading={true} />}>
+                        <Suspense fallback={<LoadWithShadow isLoading={true} loadingClassName='loading' />}>
                             <ResultSyntaxConsole
                             isLoading={isLoading}
+                            loadingClassName='loading'
                             result={result}
                             captureWidth={this.props.captureWidth} />
                         </Suspense>
@@ -76,6 +78,7 @@ class ResultWindow extends Component {
                     <ResultErrorConsole
                     selected={this.state.selected}
                     isLoading={isLoading}
+                    loadingClassName='loading'
                     result={result} />
                 )}       
                 

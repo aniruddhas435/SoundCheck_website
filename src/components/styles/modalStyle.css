@@ -183,6 +183,21 @@
     width: 10px;
 }
 
+.loading-file-list {
+    height: 19em;
+    width: 47.5em;
+    background-color: rgba(26, 25, 25, 0.5);
+    position: fixed;
+    z-index: 2;
+    opacity: 0.4;
+}
+
+.loading-file-list div {
+    position: relative;
+    top: 35%;
+    left: 45%
+}
+
 .page-status {
     display: flex;
     justify-content: center;

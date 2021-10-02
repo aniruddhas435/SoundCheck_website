@@ -1,10 +1,10 @@
 import React from 'react';
 
-const LoadWithShadow = ({isLoading}) => {
+const LoadWithShadow = ({isLoading, loadingClassName}) => {
     return (
         <div>
             {isLoading ? (
-                <div className="loading">
+                <div className={loadingClassName}>
                     <div className="loader"></div>
                 </div>
             ) : null}
