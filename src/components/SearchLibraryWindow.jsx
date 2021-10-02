@@ -5,46 +5,10 @@ export class SearchLibraryWindow extends Component {
         fileName: '',
         raagName: '',
         authorName: '',
-        pageNo: 1,
-        pages: 1,
+        pageNo: 0,
+        pages: 0,
         isLoading: false,
-        listOfFiles: [
-            // {
-            //     "raagName": "Malkauns",
-            //     "fileName": "malkauns.raag",
-            //     "authorName": "aniruddha.sarkar"
-            // },
-            // {
-            //     "raagName": "Miyan Ki Malhar",
-            //     "fileName": "mkm.raag",
-            //     "authorName": "aniruddha.sarkar"
-            // },
-            // {
-            //     "raagName": "Miyan Ki Malhar",
-            //     "fileName": "mkm3.raag",
-            //     "authorName": "aniruddha.sarkar"
-            // },
-            // {
-            //     "raagName": "Miyan Ki Malhar",
-            //     "fileName": "mkm2.raag",
-            //     "authorName": "aniruddha.sarkar"
-            // },
-            // {
-            //     "raagName": "Miyan Ki Malhar",
-            //     "fileName": "mkm2.raag",
-            //     "authorName": "aniruddha.sarkar"
-            // },
-            // {
-            //     "raagName": "Miyan Ki Malhar",
-            //     "fileName": "mkm1.raag",
-            //     "authorName": "aniruddha.sarkar"
-            // },
-            // {
-            //     "raagName": "Test",
-            //     "fileName": "ab.raag",
-            //     "authorName": "aniruddha.sarkar"
-            // }
-        ]
+        listOfFiles: []
     };
 
     goFirstPage = () => {

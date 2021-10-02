@@ -24,7 +24,8 @@ export class ModalFallBack extends Component {
                             <AddToLibraryForm
                             vanishModal={this.props.vanishModal}
                             isPosting={this.props.isPosting}
-                            handleSaveToLibrary={this.props.handleSaveToLibrary} />                           
+                            handleSaveToLibrary={this.props.handleSaveToLibrary}
+                            fileName={this.props.fileName} />                           
                         ) : (
                             <SearchLibraryWindow
                             loadSyntax={this.props.loadSyntax} />

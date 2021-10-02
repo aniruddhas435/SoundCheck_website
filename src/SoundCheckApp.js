@@ -22,7 +22,8 @@ export class SoundCheckApp extends Component {
         isLoadingResult: false,
         showModal: false,
         isPostingToLibrary: false,
-        popupContent: ''
+        popupContent: '',
+        fileName: 'your.raag'
     };
 
     // handleDragg = event => {
@@ -157,7 +158,6 @@ export class SoundCheckApp extends Component {
     handleCloseModal = () => {
         this.setState({
             showModal: false,
-            inputCode: ''
         });
     };
 
@@ -175,7 +175,8 @@ export class SoundCheckApp extends Component {
         .then(data => {
             console.log(data['inputCode']);
             this.setState({
-                inputCode: data['inputCode']
+                inputCode: data['inputCode'],
+                fileName: fileName
             });
             console.log(this.state.inputCode);
         }).then(err => {
@@ -187,12 +188,14 @@ export class SoundCheckApp extends Component {
         return (
             <div className='editor-console-container' onMouseMove={this.handleDragg}>
                 <ModalFallBack 
-                isVisible={this.state.showModal}
-                handleSaveToLibrary={this.handleSaveToLibrary}
-                isPosting={this.state.isPostingToLibrary}
-                content={this.state.popupContent}
-                vanishModal={this.handleCloseModal}
-                loadSyntax={this.loadSyntax} />
+                    isVisible={this.state.showModal}
+                    handleSaveToLibrary={this.handleSaveToLibrary}
+                    isPosting={this.state.isPostingToLibrary}
+                    content={this.state.popupContent}
+                    vanishModal={this.handleCloseModal}
+                    loadSyntax={this.loadSyntax}
+                    fileName={this.state.fileName}
+                />
 
                 <CodeEditor 
                     key="code-editor"
@@ -203,6 +206,8 @@ export class SoundCheckApp extends Component {
                     className="box"
                     inputCode={this.state.inputCode}
                     setInputCode={this.setInputCode}
+                    fileName={this.state.fileName}
+                    setFileName={fileName => this.setState({fileName: fileName})}
                 />
 
                 <div className="handler" 

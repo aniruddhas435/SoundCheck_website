@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export class AddToLibraryForm extends Component {
     state = {
-        fileName: '',
+        fileName: this.props.fileName,
         raagName: ''
     };
 
