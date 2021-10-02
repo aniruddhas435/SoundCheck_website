@@ -1,9 +1,10 @@
 import React from 'react';
 import ToolBar from './toolbar';
 import CustomMonacoEditor from './CustomMonacoEditor';
+import LoadWithShadow from './LoadWithShadow';
 
 const CodeEditor = ({ onSave, onRun, onSaveToLibrary, onSearchLibrary,
-                      inputCode, setInputCode, fileName, setFileName }) => {
+                      inputCode, setInputCode, fileName, setFileName, isLoading }) => {
     const options = {
         selectOnLineNumbers: true
     };
@@ -95,6 +96,10 @@ const CodeEditor = ({ onSave, onRun, onSaveToLibrary, onSearchLibrary,
             className="code-input"
             onDragOver={handleDragOver}
             onDrop={handleDrop}>
+                <LoadWithShadow
+                    isLoading={isLoading}
+                    loadingClassName='loading'
+                />
                 <CustomMonacoEditor 
                     width="100%"
                     height="100%"

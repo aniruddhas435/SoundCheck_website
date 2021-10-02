@@ -20,6 +20,7 @@ export class SoundCheckApp extends Component {
             'scaled-syntax': ''
         },
         isLoadingResult: false,
+        isLoadingSyntax: false,
         showModal: false,
         isPostingToLibrary: false,
         popupContent: '',
@@ -164,6 +165,9 @@ export class SoundCheckApp extends Component {
     loadSyntax = (fileName, raagName, authorName) => {
         this.handleCloseModal();
         console.log(raagName, fileName, authorName);
+        this.setState({
+            isLoadingSyntax: true
+        });
         postFetch(
             'https://soundcheck-getsequence.herokuapp.com/controller/getSyntax',
             JSON.stringify({
@@ -176,7 +180,8 @@ export class SoundCheckApp extends Component {
             console.log(data['inputCode']);
             this.setState({
                 inputCode: data['inputCode'],
-                fileName: fileName
+                fileName: fileName,
+                isLoadingSyntax: false
             });
             console.log(this.state.inputCode);
         }).then(err => {
@@ -208,6 +213,7 @@ export class SoundCheckApp extends Component {
                     setInputCode={this.setInputCode}
                     fileName={this.state.fileName}
                     setFileName={fileName => this.setState({fileName: fileName})}
+                    isLoading={this.state.isLoadingSyntax}
                 />
 
                 <div className="handler" 
