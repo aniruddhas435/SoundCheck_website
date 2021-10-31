@@ -210,6 +210,10 @@
     cursor: pointer;
 }
 
+.special-comp {
+    padding-top: 5px;
+}
+
 .page-status-comp-disabled {
     padding: 3px 5px;
     color: rgb(127, 130, 133);
@@ -218,12 +222,12 @@
 .page-no {
     background-color: rgb(76, 75, 95);
     color: aliceblue;
-    height: 1em;
+    height: 1.2em;
     width: 1.5em;
     border: none;
     border-radius: 2.5px;
     margin-top: 4px;
-    padding: 3px;
+    padding: 2px;
 }
 
 .page-no:focus {

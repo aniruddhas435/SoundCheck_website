@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import LoadWithShadow from './LoadWithShadow';
 import PaginatedList from './PaginatedList';
 
 export class SearchLibraryWindow extends Component {

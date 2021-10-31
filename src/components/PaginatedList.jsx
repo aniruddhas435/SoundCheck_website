@@ -60,8 +60,8 @@ export class PaginatedList extends Component {
                         onChange={event => this.props.getRecordsForQuery(event.target.value)}/>
                     </div>
 
-                    <div className="page-status-comp">/</div>
-                    <div className="page-status-comp">{this.props.pages}</div>
+                    <div className="page-status-comp special-comp">/</div>
+                    <div className="page-status-comp special-comp">{this.props.pages}</div>
 
                     <div className="page-status-comp">
                         <span 
